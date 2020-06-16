@@ -51,61 +51,80 @@
     <h4>장바구니</h4>
   </div>
 
-  <table class="table table-light">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">상품명</th>
-      <th scope="col">가격</th>
-      <th scope="col">수량</th>
-      <th scope="col">사이즈</th>
-    </tr>
-  </table>
-
-  <div>
-    <h4 style="display:inline">합계 = </h4><span style="font-size:25px" id="sum"></span>
+  <div class="shoppingbag__table-box">
+    <table class="table table-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">상품명</th>
+        <th scope="col">가격</th>
+        <th scope="col">수량</th>
+        <th scope="col">사이즈</th>
+      </tr>
+    </table>
+    <strong class="price__sum-box">
+      <h4 id="price-sum__h4">합계 = </h4><span id="sum"></span>
+    </strong>
   </div>
 
+  <style>
+    .shoppingbag__table-box,
+    .price__sum-box {
+      margin-left: 10px;
+    }
 
-  <!--LOCALSTORAGE에 저장할때 
-새로운 class를 만들어서 저장하기-->
-  <script>    function SampleData(id, name, price, quantity, size) {
+    .price__sum-box {
+      padding-top: 20px;
+      display: block;
+    }
+
+    #price-sum__h4 {
+      display: inline;
+    }
+
+    #sum {
+      font-size: 25px;
+    }
+  </style>
+
+
+  <!--LOCALSTORAGE에 저장할때 새로운 class를 만들어서 저장하기-->
+  <script>
+    let dataArr = [];
+    let newDataArr = [];
+
+    function SampleData(id, name, price, quantity, size) {
       this.id = id;
       this.name = name;
       this.price = price;
       this.quantity = quantity;
       this.size = size;
-      localStorage.setItem('product' + this.id, JSON.stringify(this));
     }
-    var data = new SampleData(1, '스쿱 넥 탱크 탑', 305000, 2, 'Small');
+
+    var data1 = new SampleData(1, '스쿱 넥 탱크 탑', 305000, 1, 'Small');
     var data2 = new SampleData(2, '인트레치아토 우븐 클러치', 4304000, 1, 'Large');
     var data3 = new SampleData(3, '플리세 플리츠 재킷', 3625000, 1, 'Medium');
     var data4 = new SampleData(4, 'GG 플로라 숄더 백', 1380000, 1, 'Medium');
     var data5 = new SampleData(5, '바로크 패턴 목욕 가운', 719000, 1, 'Medium');
+
+    dataArr.push(data1, data2, data3, data4, data5);
+
   </script>
 
   <!--상품꺼내서 출력하기-->
-  <script>
-    for (i = 0; i < 5; i++) {
-      var savedPd = localStorage.getItem(`product${i + 1}`)
-      var parsedPd = JSON.parse(savedPd);
 
-      $('.table').append(`<tr>
-    <th>${i + 1}</th>
-    <td>${parsedPd.name}</td>
-    <td class="price">${parsedPd.price}</td>
-    <td>
-      <i class="fas fa-minus fa-1x minus"></i>
-<span class="qunatity">${parsedPd.quantity}</span> 
-      <i class="fas fa-plus fa-1x plus"></i>
-      </td>
-    <td>${parsedPd.size}</td>
-    </tr>`)
+  <script>
+    for (i = 0; i < dataArr.length; i++) {
+      $('.table').append(
+        `<tr data-id="${dataArr[i].id}">
+          <th scope="row" class="cartBox" id="dataId"data-id="${dataArr[i].id}">${dataArr[i].id}</th>
+            <td>${dataArr[i].name}</td>
+            <td class="price">${dataArr[i].price}</td>
+            <td><i class="fas fa-minus minus"></i><span class="amount">${dataArr[i].quantity}</span><i class="fas fa-plus plus"></i></td>
+            <td>${dataArr[i].size}</td>
+            <td><button class="delete">❎</button></td>
+        </tr>`)
+      localStorage.setItem(`product${dataArr[i].id}`, JSON.stringify(dataArr[i]))
     }
-    $('.plus').on('click', function (e) {
-      var quantity = $(e.target).siblings('span').html();
-      $(e.target).siblings('span').html(Number(quantity) + 1);
-    })
-    //parseInt(quantity);
   </script>
 
   <script>
@@ -179,7 +198,16 @@
 
   </script>
 
+  <style>
+    .delete {
+      border: none;
+      background: none;
+    }
 
+    .amount {
+      padding: 0 10px;
+    }
+  </style>
 
 
   <!-- Optional JavaScript -->
