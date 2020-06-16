@@ -111,21 +111,12 @@
 
   </script>
 
-  <!--장바구니 추가 버튼-->
+  <!--상품 local Storage에 저장 & alert-->
   <script>
-    function alertMove() {
-      alert('장바구니에 추가되었습니다')
-    }
-    $("#장바구니").click(alertMove);
-  </script>
-
-  <!--상품 local Storage에 저장-->
-  <script>
-
     function saveItem(event) {
       event.preventDefault();
 
-      var obj =
+      var selectedObj =
       {
         상품명: 'name',
         정보: 'info',
@@ -136,19 +127,20 @@
       }
 
       var product = document.querySelector(".product");
-      obj.상품명 = document.getElementById("name").innerHTML;
-      obj.정보 = document.getElementById("info").innerHTML;
-      obj.수량 = document.getElementById("quantity").value;
-      obj.가격 = document.getElementById("price").innerHTML;
-      obj.색상 = document.getElementById("color").value;
-      obj.사이즈 = document.getElementById("size").value;
+      selectedObj.상품명 = document.getElementById("name").innerHTML;
+      selectedObj.수량 = document.getElementById("quantity").value;
+      selectedObj.가격 = document.getElementById("price").innerHTML;
+      selectedObj.색상 = document.getElementById("color").value;
+      selectedObj.사이즈 = document.getElementById("size").value;
       var quantityValue = quantity.value;
 
       if (quantityValue < 1) {
         window.alert('수량은 최소1개입니다')
       }
-      localStorage.setItem("product1",
-        JSON.stringify(obj))
+      localStorage.setItem("selectedProduct",
+        JSON.stringify(selectedObj))
+
+      alert('장바구니에 추가되었습니다')
 
     }
     $("#장바구니").click(saveItem);
