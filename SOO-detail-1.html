@@ -107,8 +107,6 @@
     img.src = product.img;
     title.innerHTML = product.text;
     name.innerHTML = product.title;
-    console.log(product.text)
-
   </script>
 
   <!--상품 local Storage에 저장 & alert-->
@@ -136,13 +134,18 @@
 
       if (quantityValue < 1) {
         window.alert('수량은 최소1개입니다')
+      } else {
+        var answer = window.confirm('장바구니에 추가되었습니다.장바구니로 이동하시겠습니까?')
+        if (answer) {
+          window.location = './SOO-cart.html';
+        } else {
+          return
+        }
       }
       localStorage.setItem("selectedProduct",
         JSON.stringify(selectedObj))
-
-      alert('장바구니에 추가되었습니다')
-
     }
+
     $("#장바구니").click(saveItem);
 
   </script>
