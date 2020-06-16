@@ -270,31 +270,42 @@
   <div class="container my-5 text-center">
     <button id="more-btn" class="btn btn-dark">상품 더보기</button>
   </div>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
   <script>
-    // $.get('http://127.0.0.1:8000/more.json')
-    //   .done(function (데이터) {
-    //     console.log(데이터)
-    //   })
+    let more = 0;
+    function addProduct() {
+      if (more == 0) { //한번도 안눌렀을 때 
+        $.get("./more.json").done(
+          function (데이터) {
+            for (i = 0; i < 데이터.length; i++) {
+              $('.container .row').append(`<div class="productBox col-sm-4">
+                <img src=${데이터[i].img} width="100%">
+                <h4 class="mt-4 name">${데이터[i].name}</h4>
+                <p class="price">$${데이터[i].price}</p>
+                </div>`)
+            }
+          });
+      }
+      if (more == 1) { //한번 눌렀을 때  
+        $.get("./more2.json").done(
+          function (데이터) {
+            for (i = 0; i < 데이터.length; i++) {
+              $('.container .row').append(`<div class="productBox col-sm-4">
+                <img src=${데이터[i].img} width="100%">
+                <h4 class="mt-4 name">${데이터[i].name}</h4>
+                <p class="price">$${데이터[i].price}</p>
+                </div>`)
+            }
+            $('#more-btn').addClass('hidden');//버튼없애기
+          });
+      } more++;
+    }
+    $('#more-btn').on('click', addProduct);
 
-    $('#more-btn').on('click', function () {
-      $.get('http://127.0.0.1:8000/more.json')
-        .done(function (pd) {
-          console.log(pd[0].img)
-          for (i = 0; i < pd.length; i++) {
-            var addPd = `<div class="productBox col-sm-4">
-            <img style="width:100%; cursor:pointer;" src=${pd[i].img}>
-            <h4 class="mt-4 name">${pd[i].name}</h4>
-            <p class="price">$${pd[i].price}</p>
-            </div>`
-            $('.row').append(addPd)
-          }
-        })
-    })
-
-    //1.더보기버튼누르면
-    //2.more.json경로로 get 요청으ㄹ해서      데이터가져옴
-    //3.가져온데이터를 바탕으로 상품레이아웃 HTML 예쁘게 만듬
-    //4. 원히는 곳에 꽂아놈
   </script>
 
 
