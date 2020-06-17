@@ -14,7 +14,9 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/51b298796c.js" crossorigin="anonymous"></script>
 
-  <title>Hello, world!</title>
+  <link rel="stylesheet" tyle="text/css" href="css/main.css">
+
+  <title>MY CART</title>
 </head>
 
 <body>
@@ -46,65 +48,46 @@
       </ul>
     </div>
   </nav>
-
-  <div class="text-center" style="margin:90px; margin-bottom:20px;">
-    <h4>장바구니</h4>
+  <div class='cart-body'>
+    <div class="cart-bg">
+      <div class="shoppingbag__table">
+        <h4 id="cart-title">MY CART</h4>
+        <div class="table">
+        </div>
+      </div>
+      <div class="sum__table">
+        <h4 id="sum-title">TOTAL</h4>
+        <div class='sum-box sum__product'>
+          <span class='sum-box__tt'> 상품가격</span>
+          <span id="sum"></span>
+        </div>
+        <div class='sum-box sum__ship'>
+          <span class='sum-box__tt'> 배송가격</span>
+          <spanid="sum"></span>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="shoppingbag__table-box">
-    <table class="table table-light">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">상품명</th>
-        <th scope="col">가격</th>
-        <th scope="col">수량</th>
-        <th scope="col">사이즈</th>
-      </tr>
-    </table>
-    <strong class="price__sum-box">
-      <h4 id="price-sum__h4">합계 = </h4><span id="sum"></span>
-    </strong>
-  </div>
-
-  <style>
-    .shoppingbag__table-box,
-    .price__sum-box {
-      margin-left: 10px;
-    }
-
-    .price__sum-box {
-      padding-top: 20px;
-      display: block;
-    }
-
-    #price-sum__h4 {
-      display: inline;
-    }
-
-    #sum {
-      font-size: 25px;
-    }
-  </style>
-
 
   <!--LOCALSTORAGE에 저장할때 새로운 class를 만들어서 저장하기-->
   <script>
     let dataArr = [];
     let newDataArr = [];
 
-    function SampleData(id, name, price, quantity, size) {
+    function SampleData(id, name, price, quantity, size, img) {
       this.id = id;
       this.name = name;
       this.price = price;
       this.quantity = quantity;
       this.size = size;
+      this.img = img;
     }
 
-    var data1 = new SampleData(1, '스쿱 넥 탱크 탑', 305000, 1, 'Small');
-    var data2 = new SampleData(2, '인트레치아토 우븐 클러치', 4304000, 1, 'Large');
-    var data3 = new SampleData(3, '플리세 플리츠 재킷', 3625000, 1, 'Medium');
-    var data4 = new SampleData(4, 'GG 플로라 숄더 백', 1380000, 1, 'Medium');
-    var data5 = new SampleData(5, '바로크 패턴 목욕 가운', 719000, 1, 'Medium');
+    var data1 = new SampleData(1, '스쿱 넥 탱크 탑', 305000, 1, 'Small', 'images/pic1.jpg');
+    var data2 = new SampleData(2, '인트레치아토 우븐 클러치', 4304000, 1, 'Large', 'images/pic2.jpg');
+    var data3 = new SampleData(3, '플리세 플리츠 재킷', 3625000, 1, 'Medium', 'images/pic3.jpg');
+    var data4 = new SampleData(4, 'GG 플로라 숄더 백', 1380000, 1, 'Medium', 'images/pic4.jpg');
+    var data5 = new SampleData(5, '바로크 패턴 목욕 가운', 719000, 1, 'Medium', 'images/pic5.jpg');
 
     dataArr.push(data1, data2, data3, data4, data5);
 
@@ -115,19 +98,37 @@
   <script>
     for (i = 0; i < dataArr.length; i++) {
       $('.table').append(
-        `<tr data-id="${dataArr[i].id}">
-          <th scope="row" class="cartBox" id="dataId"data-id="${dataArr[i].id}">${dataArr[i].id}</th>
-            <td>${dataArr[i].name}</td>
-            <td class="price">${dataArr[i].price}</td>
-            <td><i class="fas fa-minus minus"></i><span class="amount">${dataArr[i].quantity}</span><i class="fas fa-plus plus"></i></td>
-            <td>${dataArr[i].size}</td>
-            <td><button class="delete">❎</button></td>
-        </tr>`)
+        `<div class="cart-boxs" data-id="${dataArr[i].id}">
+          <div scope="row" class="cartBox" id="dataId"data-id="${dataArr[i].id}"></div>
+          <div class="cart-boxs__img">
+            <img src="${dataArr[i].img}">
+          </div>
+          
+          <div class="cart-boxs__detail">
+            <div class="price">${dataArr[i].price}</div>
+            <div class='name'>${dataArr[i].name}</div>
+            <div><i class="fas fa-minus minus"></i><span class="amount">${dataArr[i].quantity}</span><i class="fas fa-plus plus"></i></div>
+            <div>사이즈 ${dataArr[i].size}</div>
+          </div>
+          <div>
+            <i class="fas fa-trash-alt  delete"></i>
+          </div>
+        </div>`)
       localStorage.setItem(`product${dataArr[i].id}`, JSON.stringify(dataArr[i]))
     }
   </script>
 
   <script>
+    //한국돈으로 표시하기
+    let cartBox = $('.cart-boxs')
+    let eachPrice = $('.price')
+    for (i = 0; i < cartBox.length; i++) {
+      let eachPriceHTML = eachPrice[i].innerHTML
+      let eachPriceInKor = Number(eachPriceHTML).toLocaleString()
+      // let eachPriceInKor = eachPriceHTML[i].toLocaleString();
+      eachPrice[i].innerHTML = `₩${eachPriceInKor}`
+    }
+
     //합계구하기
     function sum() {
       price = $('.price');
@@ -176,8 +177,6 @@
       }
       sum();
     }
-
-
     $('.minus').on('click', minus);
     $('.plus').on('click', plus);
     sum();
@@ -202,6 +201,7 @@
     .delete {
       border: none;
       background: none;
+      font-size: 20px;
     }
 
     .amount {
