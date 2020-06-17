@@ -36,6 +36,8 @@
   .cart-boxs {
     border-bottom: 1px solid #ededed;
     position:relative;
+    width:100%;
+    height:100%;
     display:flex;
     flex-direction: row;
     align-items: center;
@@ -46,8 +48,7 @@
   }
 
   .cart-boxs__img{
-    width: 23%;
-    min-width:160px;
+    width:34%;
   }
 
   .cart-boxs__img img{
@@ -57,12 +58,13 @@
   .cart-boxs__detail {
     display: flex;
     line-height: 30px;
+    width:60%;
     flex-direction: column;
   }
   .cart-boxs__detail div {
     font-size:20px;
     padding: 3px 0;
-    padding-left:40px;
+    padding-left:14%;
   }
 
 
@@ -109,20 +111,26 @@
   #sum {
    font-size: 25px;
   }
+  .delete {
+    border: none;
+    background: none;
+    font-size: 20px;
+  }
+
+  .amount {
+    padding: 0 10px;
+  }
 
   @media(max-width:700px) {
     .cart-bg {
       flex-direction: column;
     }
-      .sum__table{
-        margin-top:20px;
-        width:98%;
-      }
-      .cart-boxs__detail{
-       top:10%;
-       left:35%;
-      }
-      .cart-boxs .delete{
-        bottom:0px;
-      }
+
+    .sum__table{
+      margin-top:20px;
+      width:98%;
+    }
+    .cart-boxs__detail .delete{
+      bottom:0px;
+    }
   }
