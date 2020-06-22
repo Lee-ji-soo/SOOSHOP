@@ -31,9 +31,17 @@ for (i = 0; i < dataArr.length; i++) {
           <div class="cart-boxs__detail">
           <div data-id="${dataArr[i].id}" class="price">${dataArr[i].price}</div>
           <div class='name'>${dataArr[i].name}</div>
-          <div><i class="fas fa-minus minus"></i><span class="amount">${dataArr[i].quantity}</span><i class="fas fa-plus plus"></i></div>
-          <div>사이즈 ${dataArr[i].size}</div>
-        </div>
+          <div class="col">
+          <select class="form-control size-form-control" id="size">
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <select class="form-control quantity-form-control" id="size">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
         <div>
           <i class="fas fa-trash-alt  delete"></i>
         </div>
@@ -41,82 +49,50 @@ for (i = 0; i < dataArr.length; i++) {
 
     localStorage.setItem(`product${dataArr[i].id}`, JSON.stringify(dataArr[i]))
 }
-//한국 돈으로 프린트
+//KRW으로 프린트
 const cartBox = $('.cart-boxs');
 var eachPrice = $('.price');
 
-for (i = 0; i < eachPrice.length; i++) {
 
-    let willChange = eachPrice[i].innerHTML
-    let printKorSumEach = new Intl.NumberFormat('ko-KR', {
+//each을 위한 가격 내용 KRW으로 변경
+
+function KRWeach() {
+    for (i = 0; i < eachPrice.length; i++) {
+
+        let beforeKRW = eachPrice[i].innerHTML
+        let converted = new Intl.NumberFormat('ko-KR', {
+            style: 'currency',
+            currency: 'KRW'
+        }).format(beforeKRW);
+        console.log(i, converted)
+        eachPrice[i].innerHTML = converted;
+    }
+}
+KRWeach();
+
+//Sum을 가격 KRW으로 변경
+function KRW(구멍) {
+    let converted = new Intl.NumberFormat('ko-KR', {
         style: 'currency',
         currency: 'KRW'
-    }).format(willChange);
+    }).format(구멍);
+    $('#sum').html(converted);
 }
 
 //합계구하기
 function sum() {
     let sum = 0;
+    let quantity = $(".quantity-form-control")
+    let price = $('.price');
     for (i = 0; i < eachPrice.length; i++) {
-        sum += Number(eachPrice[i].innerHTML);
+        for (i = 0; i < eachPrice.length; i++) {
+            let = eachSum = ('price', dataArr[i].price) * ('quantity', quantity[i].value)
+            sum += Number(eachSum);
+        }
     }
-    var semisum = $('#sum').html(sum)
-    // krw으로 변경
-    var korSum = semisum.html()
-    //가격 내용 krw으로 변경
-
-    let printKorSum = new Intl.NumberFormat('ko-KR', {
-        style: 'currency',
-        currency: 'KRW'
-    }).format(korSum);
-
-    let newPrint = semisum.html(printKorSum);
-
-    ("#sum").innerHTML = newPrint;
+    $("#sum").html(sum);
+    KRW(sum);
 }
-
-//마이너스키
-function minus(e) {
-    var etargetID = e.target.parentNode.parentNode.parentNode.dataset.id - 1;
-
-    var jprice = dataArr[etargetID].price;
-    var amount = $(e.target).siblings('span').html();
-    if (amount > 0) {
-        //1씩줄어듬
-        $(e.target).siblings('span').html(Number(amount) - 1)
-        //갯수는 변경된 내용
-        amount = $(e.target).siblings('span').html();
-        //가격의 내용 수정
-        $(e.target).parent().siblings('.price').html(jprice * amount);
-
-    } else {
-        amount = 0
-    }
-    sum();
-
-}
-
-//플러스키
-
-function plus(e) {
-    var etargetID = e.target.parentNode.parentNode.parentNode.dataset.id - 1;
-
-    var jprice = dataArr[etargetID].price;
-
-    var amount = $(e.target).siblings('span').html();
-    if (amount < 10) {
-        //1씩줄어듬
-        $(e.target).siblings('span').html(Number(amount) + 1)
-        amount = $(e.target).siblings('span').html();
-        $(e.target).parent().siblings('.price').html(jprice * amount);
-    } else {
-        amount = 10
-    }
-    sum();
-}
-
-$('.minus').on('click', minus);
-$('.plus').on('click', plus);
 sum();
 
 //삭제하기
@@ -128,5 +104,6 @@ function deleteEle(e) {
         clicked.remove();
         localStorage.removeItem(`product${clickedId}`);
     }
+
 }
 $('.delete').on('click', deleteEle);

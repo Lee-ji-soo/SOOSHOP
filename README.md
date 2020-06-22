@@ -2,11 +2,9 @@
 shoppingmall_website
 
 ## cart
-1. 정보 localStorage에 저장
+- [x] 정보 localStorage에 저장
+- [x] 각 정보 - 코리안 won으로 출력
+- [x] total 가격 - 코리안 won으로 출력
+   (origin price) * (amount-select form.value)
 
-2. 각 정보 + 가격 출력 + 코리안 won으로 변경
-
-3. minus,plus 클릭 시 가격 경
-4. total 가격 변경 + 코리안 won 으로 변경
-5. minus,plus sibling 가격 출력 + 코리안 won으로 변경
-   
+- [ ] 수량 변경시 수량 변경 확인 문구
