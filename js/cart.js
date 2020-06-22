@@ -37,11 +37,17 @@ for (i = 0; i < dataArr.length; i++) {
             <option>M</option>
             <option>L</option>
           </select>
-          <select class="form-control quantity-form-control" id="size">
+          <select data-id="${dataArr[i].id}" class="form-control quantity-form-control" id="quantity">
             <option>1</option>
             <option>2</option>
             <option>3</option>
           </select>
+          </div>
+          <div id="changeOrNot" class="changeOrNot">
+            <p class="txt">수량을 변경하시겠습니까?</p>
+            <button class="go">변경</button>
+            <button class="no">취소</button>
+          </div>
         <div>
           <i class="fas fa-trash-alt  delete"></i>
         </div>
@@ -80,10 +86,10 @@ function KRW(구멍) {
 }
 
 //합계구하기
+const quantity = $(".quantity-form-control")
+
 function sum() {
     let sum = 0;
-    let quantity = $(".quantity-form-control")
-    let price = $('.price');
     for (i = 0; i < eachPrice.length; i++) {
         for (i = 0; i < eachPrice.length; i++) {
             let = eachSum = ('price', dataArr[i].price) * ('quantity', quantity[i].value)
@@ -94,6 +100,21 @@ function sum() {
     KRW(sum);
 }
 sum();
+
+//수량 변경 확인창 띄우기
+quantity.change(function() {
+    $(this).parent().siblings(".changeOrNot").addClass('displayBlock');
+});
+
+function displayNone(e) {
+    $(e.target).parent().removeClass('displayBlock');
+    console.log(e)
+}
+//변경버튼클릭
+$('.go').click(sum)
+$('.go').click(displayNone);
+$('.no').click(displayNone);
+
 
 //삭제하기
 function deleteEle(e) {

@@ -72,6 +72,7 @@
     font-size: 20px;
     padding: 3px 0;
     padding-left: 14%;
+    text-align: left;
 }
 
 
@@ -138,6 +139,55 @@
 .form-control:first-child {
     margin-left: 0px;
 }
+
+#changeOrNot {
+    width: 90%;
+    height: 110px;
+    position: relative;
+    top: 20px;
+    text-align: left;
+
+    border-top: 1px solid #dbdbdb;
+    margin-left: 50px;
+    padding-left: 10px;
+}
+
+#changeOrNot .txt {
+    font-size: 22px;
+    color: black;
+    padding-top: 20px;
+}
+
+#changeOrNot button {
+    outline: none;
+    background: #fff;
+    color: #666;
+    border: none;
+}
+
+
+#changeOrNot .go {
+    color: #fff;
+    background-color: black;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+
+#changeOrNot .no {
+    color: #999;
+    border-bottom: 1px solid #999;
+}
+
+.changeOrNot {
+    display: none;
+}
+
+.displayBlock {
+    display: block;
+}
+
+
 
 @media(max-width:700px) {
     .cart-bg {
