@@ -102,6 +102,7 @@
     color: #999;
 }
 
+
 .sum__table {
     width: 50%;
     height: max-content;
@@ -138,6 +139,12 @@
 
 .form-control:first-child {
     margin-left: 0px;
+}
+
+.quantity-form-control {
+    padding: 8px;
+    position: absolute;
+    left: 150px;
 }
 
 #changeOrNot {
@@ -188,7 +195,6 @@
 .displayBlock {
     opacity: 1;
     transform: translateY(0px);
-
 }
 
 

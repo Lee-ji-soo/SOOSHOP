@@ -37,10 +37,18 @@ for (i = 0; i < dataArr.length; i++) {
             <option>M</option>
             <option>L</option>
           </select>
-          <select data-id="${dataArr[i].id}" class="form-control quantity-form-control" id="quantity">
+          <select data-id="${dataArr[i].id}" class="form-control quantity-form-control" id="quantity"
+           size='1'onfocus='this.size=3;' 
+           onblur='this.size=1;' 
+           onchange='this.size=1; this.blur();'>
+          
             <option>1</option>
             <option>2</option>
             <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+         
           </select>
           </div>
           <div id="changeOrNot" class="changeOrNot">
