@@ -180,11 +180,15 @@
 }
 
 .changeOrNot {
-    display: none;
+    transform: translateY(50px);
+    transition: all ease .5s;
+    opacity: 0;
 }
 
 .displayBlock {
-    display: block;
+    opacity: 1;
+    transform: translateY(0px);
+
 }
 
 
