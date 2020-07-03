@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/51b298796c.js" crossorigin="anonymous"></script>
+    <title>Detail</title>
+</head>
+
+<body>
+    <script src="products.js"></script>
+
+    <!--navibar HTML-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position:fixed; width:100%; z-index:3; opacity:0.8">
+        <a class="navbar-brand" href="./SOO-index.html">SOOSHOP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./SOO-index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li>
+                    <a onclick="modal열기('로그인하세요')" class="nav-link" href="#" role="button">Log in</a>
+                </li>
+                <li>
+                    <a onclick="modal열기('가입하세요')" class="nav-link ">가입하기</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top:100px;">
+        <h4 class="text-start my-4">Detail</h4>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div id="productBox">
+                    <img id='picture' src="../../images/pic2.jpg" width="90%">
+                </div>
+                <i class="fas fa-caret-left fa-3x imgBtn"></i>
+                <i class="fas fa-caret-right fa-3x imgBtn"></i>
+            </div>
+            <div class="col-md-6 mt-4 product">
+                <h4 id="name">Blossom Dress</h4>
+                <p id="info">실은 동대문에서 태그갈이한 상품입니다</p>
+                <p id="price">$199</p>
+                <form>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" class="form-control" value="1" id="quantity">
+                        </div>
+                        <div class="col">
+                            <select class="form-control" id="color">
+                                <option>White</option>
+                                <option>Red</option>
+                                <option>Green</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" id="size">
+                                <option>Large</option>
+                                <option>Medium</option>
+                                <option>Small</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-dark my-4" id="장바구니">장바구니추가</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--상품DATA js-->
+    <script src="products.js"></script>
+
+    <!--상품정보 불러오기-->
+    <script>
+        //products.id가 1인 값을 가져오기
+
+        const filterProduct = products.filter(function(find) {
+            return find.id === 2;
+        })
+        const product = filterProduct[0];
+
+        const img = document.getElementById('picture');
+        const name = document.getElementById('name');
+        const title = document.getElementById('info');
+
+        img.src = product.img;
+        title.innerHTML = product.text;
+        name.innerHTML = product.title;
+        console.log(product.text)
+    </script>
+
+    <!--장바구니 추가 버튼-->
+    <script>
+        function alertMove() {
+            alert('장바구니에 추가되었습니다')
+        }
+        $("#장바구니").click(alertMove);
+    </script>
+
+    <!--상품 local Storage에 저장-->
+    <script>
+        function saveItem(event) {
+            event.preventDefault();
+
+            var obj = {
+                상품명: 'name',
+                정보: 'info',
+                수량: 'quantity',
+                가격: 'price',
+                색상: 'color',
+                사이즈: 'size'
+            }
+
+            var product = document.querySelector(".product");
+            obj.상품명 = document.getElementById("name").innerHTML;
+            obj.정보 = document.getElementById("info").innerHTML;
+            obj.수량 = document.getElementById("quantity").value;
+            obj.가격 = document.getElementById("price").innerHTML;
+            obj.색상 = document.getElementById("color").value;
+            obj.사이즈 = document.getElementById("size").value;
+            var quantityValue = quantity.value;
+
+            if (quantityValue < 1) {
+                window.alert('수량은 최소1개입니다')
+            }
+            localStorage.setItem("product1",
+                JSON.stringify(obj))
+
+        }
+        $("#장바구니").click(saveItem);
+    </script>
+
+    <!--상품이미지 prev, next-->
+    <script>
+        let i = 0;
+
+        function imgBtnControll() {
+            if (i < 1) {
+                i++
+                console.log('if', i)
+            } else {
+                i = 0
+                console.log('else', i)
+            }
+            console.log('pic', i)
+            $('#picture').attr('src', `images/pic2-${i}.jpg`);
+        }
+        $('.imgBtn').click(imgBtnControll);
+    </script>
+
+    <!--tab css-->
+    <style>
+        .list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tab-button {
+            display: block;
+            padding: 10px 20px 10px 20px;
+            float: left;
+            margin-right: -1px;
+            margin-bottom: -1px;
+            color: grey;
+            text-decoration: none;
+        }
+
+        .orange {
+            border-top: 2px solid orange;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid white;
+            border-left: 1px solid #ccc;
+            color: black;
+            margin-top: -2px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 10px;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+
+    <!--TAB HTML-->
+    <div class="container mt-5" style="margin-bottom: 300px;">
+        <ul class="list">
+            <li><a class="tab-button" data-id="0">Products</a></li>
+            <li><a class="tab-button orange" data-id="1">Info</a></li>
+            <li><a class="tab-button" data-id="2">Shipping</a></li>
+            <div style="clear:both;"></div>
+        </ul>
+
+        <div class="tab-content" id="0">
+            <p>상품설명입니다. Product</p>
+        </div>
+        <div class="tab-content show" id="1">
+            <p>상품정보입니다. Information</p>
+        </div>
+        <div class="tab-content" id="2">
+            <p>배송정보입니다. Shipping</p>
+        </div>
+    </div>
+
+    <!--Tab js-->
+    <script>
+        function changeTab(e) {
+            $('.tab-button').removeClass('orange');
+            $(e.target).addClass('orange');
+            const currentTarget = event.target.dataset.id;
+            $('.show').removeClass('show');
+            document.getElementById(`${currentTarget}`).classList.add('show');
+        }
+
+        $('.tab-button').on("click", changeTab)
+    </script>
+    <!--  <script src="tab.js"></script>-->
+
+    <!--footer-->
+    <div class="jumbotron" style="background-color:#111;border-radius:0; margin-bottom:0">
+        <p class="lead text-white">This is a simple hero unit, a simple jumbotron-style component for calling extra
+            attention to
+            featured content or information.</p>
+        <hr class="my-4 ">
+        <p class="text-white-50">It uses utility classes for typography and spacing to space content out within the larger
+            container.</p>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

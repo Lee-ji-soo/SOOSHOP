@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <link href="../css/main.css" rel="stylesheet">
+
+    <title>SOOSHOP</title>
+</head>
+
+<body>
+
+    <!--모달창 HTMl-->
+    <div class="modalBox">
+        <div class="black-bg" id="모달창">
+            <div class="white-bg hidden">
+                <h4 id="제목">로그인하세요</h4>
+                <form id="form" action="login.php" onsubmit="return startLogin()">
+                    <div class="form-group">
+                        <input type="email" id="이메일" class="form-control" placeholder="이메일을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="비번" placeholder="비밀번호를 입력하세요" class="form-control">
+                    </div>
+                    <button type="submit" id='제출' class="btn btn-primary">Submit</button>
+                    <div onclick="modal닫기()" id="close" class="btn btn-primary">닫기</div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--모달창 email-check js-->
+    <script>
+        const 이메일 = document.getElementById('이메일');
+        const 비번 = document.getElementById('비번');
+        const form = document.getElementById('form');
+        var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+        // var 이메일확인 = 이메일.value;
+        // console.log(emailRule.test(이메일확인));
+
+        function startLogin(e) {
+            var 이메일확인 = 이메일.value;
+            console.log(이메일확인.match(emailRule));
+
+            var 비번확인 = 비번.value
+            if (이메일확인 == '') {
+                alert('여기 ! 이메일을 입력하라')
+                return false
+
+            } else if (이메일확인.match(emailRule) === false) {
+                console.log(이메일확인.match)
+                alert('여기 ! 이메일을 제대로 입력하라')
+                return false;
+            } else if (비번확인 == '') {
+                alert('여기 ! 비번을 입력하라')
+                return false
+            } else {
+                return true;
+            }
+        }
+        form.addEventListener('submit', startLogin)
+    </script>
+
+    <!--navibar HTML-->
+    <nav class="navbar navbar-expand-lg" style="position:fixed; width:100%; z-index:3; opacity:0.8">
+        <a class="navbar-brand" href="#">SOOSHOP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./SOO-index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./SOO-cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./SOO-about.html">About</a>
+                </li>
+                <li>
+                    <a onclick="modal열기('로그인하세요')" class="nav-link" href="#" role="button">Log in</a>
+                </li>
+                <li>
+                    <a onclick="modal열기('가입하세요')" class="nav-link" href="#" role='button'>가입하기</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--메인 HTML-->
+    <div class="jumbotron" style="background-color:#111;border-radius:0; padding-top:140px;">
+        <h1 class="display-4 text-light">Enjoy Your Shop! Now 60%OFF</h1>
+        <p class="lead text-white-50">This is a simple hero unit, a simple jumbotron-style component for calling extra
+            attention to
+            featured content or information.</p>
+        <hr class="my-4 " style="border:0.5px solid #333; width:100%;">
+        <p class="text-white-50">It uses utility classes for typography and spacing to space content out within the larger
+            container.</p>
+    </div>
+
+    <!--상품진열 HTML-->
+    <div class="container">
+        <div style="margin-bottom:30px;">
+            <button id="sort-btn__low" class="btn btn-dark">낮은 가격순으로 정렬</button>
+            <button id="sort-btn__high" class="btn btn-dark">높은 가격순으로 정렬</button>
+        </div>
+        <div class="row">
+            <!-- <div class="col-sm-4">
+        <img class="img" src="pic2.jpg" width="100%">
+        <h4 class="mt-4 name">상품명</h4>
+        <p class='info'>상품설명</p>
+      </div> -->
+        </div>
+    </div>
+
+    <!--상품더보기 AJAX-->
+    <div class="container my-5 text-center">
+        <button id="more-btn" class="btn btn-dark">상품 더보기</button>
+    </div>
+
+    <!--footer-->
+    <div class="jumbotron" style="background-color:#111;border-radius:0; margin-bottom:0">
+        <p class="lead text-white">This is a simple hero unit, a simple jumbotron-style component for calling extra
+            attention to
+            featured content or information.</p>
+        <hr class="my-4 ">
+        <p class="text-white-50">It uses utility classes for typography and spacing to space content out within the larger
+            container.</p>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="module" src='../src/js/index.js'></script>
+    <script type="module" src='../src/js/products.js'></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>
