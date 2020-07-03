@@ -57,7 +57,7 @@ for (let i = 0; i < dataArr.length; i++) {
             <button class="no">취소</button>
           </div>
         <div>
-          <i class="fas fa-trash-alt  delete"></i>
+          <i class="fas fa-trash-alt delete"></i>
         </div>
       </div>`)
 
@@ -65,11 +65,10 @@ for (let i = 0; i < dataArr.length; i++) {
 }
 //KRW으로 프린트
 const cartBox = $('.cart-boxs');
-var eachPrice = $('.price');
-
 
 //each을 위한 가격 내용 KRW으로 변경
 function KRWeach() {
+    let eachPrice = $('.price');
     for (let i = 0; i < eachPrice.length; i++) {
 
         let beforeKRW = eachPrice[i].innerHTML
@@ -77,7 +76,6 @@ function KRWeach() {
             style: 'currency',
             currency: 'KRW'
         }).format(beforeKRW);
-        console.log(i, converted)
         eachPrice[i].innerHTML = converted;
     }
 }
@@ -97,9 +95,14 @@ const quantity = $(".quantity-form-control")
 
 function sum() {
     let sum = 0;
+    let eachPrice = $('.price');
+
     for (i = 0; i < eachPrice.length; i++) {
         for (i = 0; i < eachPrice.length; i++) {
-            let eachSum = ('price', dataArr[i].price) * ('quantity', quantity[i].value)
+            let pricehtml = eachPrice[i].innerHTML;
+            let priceNUM = pricehtml.replace(/[₩,]/g, '');
+            let eachSum = ('price', priceNUM) * ('quantity', quantity[i].value)
+
             sum += Number(eachSum);
         }
     }
@@ -115,23 +118,20 @@ quantity.change(function() {
 
 function displayNone(e) {
     $(e.target).parent().removeClass('displayBlock');
-    console.log(e)
 }
 //변경버튼클릭
 $('.go').click(sum)
 $('.go').click(displayNone);
 $('.no').click(displayNone);
 
-
 //삭제하기
 function deleteEle(e) {
-    var clicked = $(e.target).parent().parent();
+    var clicked = $(e.target).parent().parent().parent();
     var clickedId = clicked.data('id');
-
     for (i = 0; i < localStorage.length; i++) {
         clicked.remove();
         localStorage.removeItem(`product${clickedId}`);
-    }
-
+    };
+    sum()
 }
-$('.delete').on('click', deleteEle);
+$('.delete').click(deleteEle);
