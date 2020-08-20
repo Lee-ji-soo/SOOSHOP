@@ -1,11 +1,9 @@
 import {
     products
-} from './products.js';
+} from '../assets/products.js';
 
-// <!--상품정보 불러오기-->
-//products.id가 1인 값을 가져오기
 
-const filterProduct = products.filter(function(find) {
+const filterProduct = products.filter(function (find) {
     return find.id === 1;
 })
 const product = filterProduct[0];
