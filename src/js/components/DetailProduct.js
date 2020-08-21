@@ -1,7 +1,5 @@
-function DetailProduct(products) {
-    this.products = products
-
-    const product = this.products[0]
+function DetailProduct({ products }) {
+    let product = products[0]
 
     this.render = () => {
         const productBox = document.getElementById('detail-product-box')
@@ -26,6 +24,11 @@ function DetailProduct(products) {
         if (productBox) {
             productBox.innerHTML = htmlStr
         }
+    }
+
+    this.setState = (productId) => {
+        product = products[productId - 1]
+        this.render()
     }
 
     this.evtBinding = () => {

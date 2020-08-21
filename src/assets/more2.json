@@ -4,7 +4,9 @@
         "name": "GG 플로라 숄더 백",
         "price": "₩1,380,000",
         "priceset": 1380000,
-        "img": "../../images/pic4-0.jpg",
+        "img": [
+            "../../images/pic4-0.jpg"
+        ],
         "title": "Signor Dress",
         "text": "이것은 7번째 상품입니다."
     },
@@ -13,7 +15,9 @@
         "name": "바로크 패턴 목욕 가운",
         "price": "₩719,000",
         "priceset": 719000,
-        "img": "../../images/pic5-0.jpg",
+        "img": [
+            "../../images/pic5-0.jpg"
+        ],
         "title": "Monseur",
         "text": "이것은 8번째 상품입니다."
     },
@@ -22,7 +26,9 @@
         "name": "90's 탱크탑",
         "price": "₩178,000",
         "priceset": 178000,
-        "img": "../../images/pic6-0.jpg",
+        "img": [
+            "../../images/pic6-0.jpg"
+        ],
         "title": "Kamusta",
         "text": "이것은 9번째 상품입니다."
     }

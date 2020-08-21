@@ -1,23 +1,22 @@
-function MainProduct(products) {
-
+function MainProduct({ products, setProductId }) {
     this.products = products
+    this.setProductId = setProductId
+
+    const productUL = document.getElementById('product-ul')
 
     this.render = () => {
-        const productUL = document.getElementById('product-ul');
-
         if (productUL) {
-
             let htmlStr = ''
             htmlStr += this.products
                 .map(product =>
-                    `<li id= ${product.id}>
-                    <a href='./detail-${product.id}.html'>
-                        <img class='product_img'
-                        src='${product.img[0]}'>
-                    </a>
-                    <p class='product_title'>${product.title}</p>
-                    <p class='product_price'>${product.price}</p>
-                 </li>`)
+                    `<li id='${product.id}'>
+                        <a href='./detail.html'>
+                            <img data-product='${product.id}'class='product_img'
+                            src='${product.img[0]}'>
+                        </a>
+                        <p class='product_title'>${product.title}</p>
+                        <p class='product_price'>${product.price}</p>
+                     </li>`)
                 .join('')
 
             productUL.innerHTML = htmlStr
@@ -30,7 +29,6 @@ function MainProduct(products) {
     }
 
     this.evtBingding = () => {
-
         this.handleSorting = () => {
             const sortBtnLow = document.getElementById('sort-btn__low');
             const sortBtnHigh = document.getElementById('sort-btn__high');
@@ -54,7 +52,6 @@ function MainProduct(products) {
                 sortBtnHigh.addEventListener('click', sortHighPrice)
             }
         }
-
 
         this.handleMoreBtn = () => {
             const moreBtn = document.getElementById('more-btn')
@@ -90,8 +87,21 @@ function MainProduct(products) {
             }
         }
 
+        this.handleClickProduct = () => {
+            const getProductId = (e) => {
+                const productId = e.target.dataset.product
+                this.setProductId(productId)
+            }
+
+            if (productUL) {
+                productUL.addEventListener('click', getProductId)
+            }
+
+        }
+
         this.handleSorting()
         this.handleMoreBtn()
+        this.handleClickProduct()
     }
 
     this.render()
