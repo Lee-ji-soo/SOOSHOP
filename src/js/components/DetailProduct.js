@@ -22,7 +22,10 @@ function DetailProduct(products) {
         <p id="detail-product_text">${product.text}</p>
         <p id="detail-product_price">${product.price}</p>
         `
-        productBox.innerHTML = htmlStr
+
+        if (productBox) {
+            productBox.innerHTML = htmlStr
+        }
     }
 
     this.evtBinding = () => {
@@ -41,7 +44,10 @@ function DetailProduct(products) {
                 }
                 productImg.src = `${product.img[cur]}`
             }
-            productImgBtn.addEventListener('click', changeImg);
+
+            if (productImgBtn) {
+                productImgBtn.addEventListener('click', changeImg)
+            }
         }
 
         this.handleShoppingBag = () => {
@@ -91,7 +97,9 @@ function DetailProduct(products) {
                 }
             }
 
-            shoppingBag.addEventListener('click', handleSelected);
+            if (shoppingBag) {
+                shoppingBag.addEventListener('click', handleSelected)
+            }
         }
 
         this.handleTab = () => {
@@ -110,7 +118,9 @@ function DetailProduct(products) {
                 eTargetCon.classList.add('show');
             }
 
-            tabBox.addEventListener('click', changeTab)
+            if (tabBox) {
+                tabBox.addEventListener('click', changeTab)
+            }
         }
 
         this.handleShoppingBag()

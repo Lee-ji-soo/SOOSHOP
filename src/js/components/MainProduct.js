@@ -12,7 +12,8 @@ function MainProduct(products) {
                 .map(product =>
                     `<li id= ${product.id}>
                     <a href='./detail-${product.id}.html'>
-                        <img class='product_img' src='${product.img}'>
+                        <img class='product_img'
+                        src='${product.img[0]}'>
                     </a>
                     <p class='product_title'>${product.title}</p>
                     <p class='product_price'>${product.price}</p>
