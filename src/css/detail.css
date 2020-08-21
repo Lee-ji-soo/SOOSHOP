@@ -1,4 +1,10 @@
 /* <!--TAB css--> */
+
+#detail-product-box #product_img{
+width:80px;
+height:100px;
+}
+
 .list {
     list-style-type: none;
     margin: 0;
@@ -6,7 +12,7 @@
     border-bottom: 1px solid #ccc;
 }
 
-.tab-button {
+.tab_btn {
     display: block;
     padding: 10px 20px 10px 20px;
     float: left;
@@ -25,7 +31,7 @@
     margin-top: -2px;
 }
 
-.tab-content {
+.tab_content {
     display: none;
     padding: 10px;
 }

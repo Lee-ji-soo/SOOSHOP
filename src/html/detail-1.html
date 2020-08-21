@@ -13,9 +13,27 @@
 </head>
 
 <body>
+    <!--모달창-->
+    <div class="modal-box">
+        <div class="modal-bg-box">
+            <div class="modal-input-box">
+                <h4 id="modal_title">로그인하세요</h4>
+                <form id="input-form" action="login.php">
+                    <div class="input">
+                        <input id="form-email" type="email" placeholder="이메일을 입력하세요">
+                        <input id="form-password" type="password" placeholder="비밀번호를 입력하세요">
+                    </div>
+                    <div id="form-handle">
+                        <button id='submit-btn' class="btn" type="submit">Submit</button>
+                        <button id="close-btn" class="btn" type="button">닫기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
+    <!--네비게이션-->
     <header>
-        <!--네비게이션-->
         <nav id="navigation">
             <a class="nav-brand" href="#">SOOSHOP</a>
             <div>
@@ -39,61 +57,52 @@
             </div>
         </nav>
     </header>
+
     <!--상품이미지 정보 옵션-->
     <main>
         <div class="container">
             <h4>Detail</h4>
             <div>
                 <div id="detail-product-box">
-                    <img id="picture">
                 </div>
-
-                <i class="fas fa-caret-left fa-3x imgBtn"></i>
-                <i class="fas fa-caret-right fa-3x imgBtn"></i>
-
-                <div class="detail-product">
-                    <h4 id="product_name"></h4>
-                    <p id="product_info"></p>
-                    <p id="product_price"></p>
-
-                    <form>
-                        <div class="form-quantity">
-                            <input id="detail-form_quantity" type="text" value="1">
-                        </div>
-                        <div class="form-color">
-                            <select id="detail-form_color">
-                                <option>White</option>
-                                <option>Red</option>
-                                <option>Green</option>
-                            </select>
-                        </div>
-                        <div class="form-size">
-                            <select id="detail-form_size">
-                                <option>Large</option>
-                                <option>Medium</option>
-                                <option>Small</option>
-                            </select>
-                        </div>
-                        <button id="shoppingbag" class="btn btn-dark" type="submit">장바구니추가</button>
-                    </form>
-                </div>
+                <form>
+                    <div class="form-quantity">
+                        <input id="detail-form_quantity" type="text" value="1">
+                    </div>
+                    <div class="form-color">
+                        <select id="detail-form_color">
+                            <option>White</option>
+                            <option>Red</option>
+                            <option>Green</option>
+                        </select>
+                    </div>
+                    <div class="form-size">
+                        <select id="detail-form_size">
+                            <option>Large</option>
+                            <option>Medium</option>
+                            <option>Small</option>
+                        </select>
+                    </div>
+                    <button id="shoppingbag" class="btn btn-dark" type="submit">장바구니추가</button>
+                </form>
             </div>
+        </div>
         </div>
 
         <!--탭버튼-->
-        <div class="detail-tab">
+        <div id="detail-tab">
             <ul class="tab-ul">
-                <li class="tab-li"><a class="tab_button" data-id="0">Products</a></li>
-                <li class="tab-li"><a class="tab_button orange" data-id="1">Info</a></li>
-                <li class="tab-li"><a class="tab_button" data-id="2">Shipping</a></li>
+                <li class="tab-li"><a class="tab_btn" data-tab="product">Products</a></li>
+                <li class="tab-li"><a class="tab_btn orange" data-tab="Info">Info</a></li>
+                <li class="tab-li"><a class="tab_btn" data-tab="Shipping">Shipping</a></li>
             </ul>
-            <div class="tab_content" id="0">
+            <div class="tab_content" id="tab_product">
                 <p>상품설명입니다. Product</p>
             </div>
-            <div class="tab_content show" id="1">
+            <div class="tab_content show" id="tab_Info">
                 <p>상품정보입니다. Information</p>
             </div>
-            <div class="tab_content" id="2">
+            <div class="tab_content" id="tab_Shipping">
                 <p>배송정보입니다. Shipping</p>
             </div>
         </div>
@@ -112,11 +121,10 @@
         </p>
     </footer>
 
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script type="module" src="../js/detail.js"> </script>
-    <script type="module" src="../js/products.js"> </script>
+
+    <script type="module" src="../js/index.js"> </script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"

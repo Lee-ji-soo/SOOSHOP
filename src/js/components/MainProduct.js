@@ -1,22 +1,26 @@
 function MainProduct(products) {
+
     this.products = products
 
     this.render = () => {
         const productUL = document.getElementById('product-ul');
-        let htmlStr = ''
 
-        htmlStr += this.products
-            .map(product =>
-                `<li id= ${product.id}>
+        if (productUL) {
+
+            let htmlStr = ''
+            htmlStr += this.products
+                .map(product =>
+                    `<li id= ${product.id}>
                     <a href='./detail-${product.id}.html'>
                         <img class='product_img' src='${product.img}'>
                     </a>
                     <p class='product_title'>${product.title}</p>
                     <p class='product_price'>${product.price}</p>
                  </li>`)
-            .join('')
+                .join('')
 
-        productUL.innerHTML = htmlStr
+            productUL.innerHTML = htmlStr
+        }
     }
 
     this.setState = (nextData) => {
@@ -27,7 +31,6 @@ function MainProduct(products) {
     this.evtBingding = () => {
 
         this.handleSorting = () => {
-
             const sortBtnLow = document.getElementById('sort-btn__low');
             const sortBtnHigh = document.getElementById('sort-btn__high');
 
@@ -45,40 +48,45 @@ function MainProduct(products) {
                 this.setState(sortedProducts)
             }
 
-            sortBtnLow.addEventListener('click', sortLowPrice)
-            sortBtnHigh.addEventListener('click', sortHighPrice)
+            if (sortBtnHigh, sortBtnLow) {
+                sortBtnLow.addEventListener('click', sortLowPrice)
+                sortBtnHigh.addEventListener('click', sortHighPrice)
+            }
         }
+
 
         this.handleMoreBtn = () => {
             const moreBtn = document.getElementById('more-btn')
 
-            const addProducts = (calledProducts) => {
-                const addedProducts = this.products.concat(calledProducts)
-                this.setState(addedProducts)
-            }
-
-            let more = 0;
-
-            const callProductAjax = () => {
-                if (more == 0) {
-                    $.get("../assets/more.json").done(
-                        function (product) {
-                            addProducts(product)
-                        }
-                    );
+            if (moreBtn) {
+                const addProducts = (calledProducts) => {
+                    const addedProducts = this.products.concat(calledProducts)
+                    this.setState(addedProducts)
                 }
-                if (more == 1) {
-                    $.get("../assets/more2.json").done(
-                        function (product) {
-                            addProducts(product)
-                            moreBtn.classList.add('hidden'); //버튼없애기
-                        }
-                    )
-                }
-                more++;
-            }
 
-            moreBtn.addEventListener('click', callProductAjax);
+                let more = 0;
+
+                const callProductAjax = () => {
+                    if (more == 0) {
+                        $.get("../assets/more.json").done(
+                            function (product) {
+                                addProducts(product)
+                            }
+                        );
+                    }
+                    if (more == 1) {
+                        $.get("../assets/more2.json").done(
+                            function (product) {
+                                addProducts(product)
+                                moreBtn.classList.add('hidden'); //버튼없애기
+                            }
+                        )
+                    }
+                    more++;
+                }
+
+                moreBtn.addEventListener('click', callProductAjax)
+            }
         }
 
         this.handleSorting()

@@ -3,7 +3,7 @@ export var products = [{
     id: 1,
     price: '₩305,000',
     priceset: 305000,
-    img: '../../images/pic1.jpg',
+    img: ['../../images/pic1-0.jpg', '../../images/pic1-1.jpg'],
     title: '스쿱 넥 탱크 탑',
     text: "Do you like some random yellow stuff? Here's one for you."
 },
@@ -11,7 +11,7 @@ export var products = [{
     id: 2,
     price: '₩4,304,000',
     priceset: 4304000,
-    img: '../../images/pic2.jpg',
+    img: '../../images/pic2-0.jpg',
     title: '인트레치아토 우븐 클러치',
     text: "Stole it from my dad."
 },
@@ -20,7 +20,7 @@ export var products = [{
     price: '₩3,625,000',
     priceset: 3625000,
 
-    img: '../../images/pic3.jpg',
+    img: '../../images/pic3-0.jpg',
     title: '플리세 플리츠 재킷',
     text: "The best beer comes from the monastery."
 },
@@ -29,7 +29,7 @@ export var products = [{
     price: '₩1,380,000',
     priceset: 1380000,
 
-    img: '../../images/pic4.jpg',
+    img: '../../images/pic4-0.jpg',
     title: 'GG 플로라 숄더 백',
     text: "The best beer comes from the monastery."
 },
@@ -37,7 +37,7 @@ export var products = [{
     id: 5,
     price: '₩719,000',
     priceset: 719000,
-    img: '../../images/pic5.jpg',
+    img: '../../images/pic5-0.jpg',
     title: '바로크 패턴 목욕 가운',
     text: "The best beer comes from the monastery."
 }, {
@@ -45,7 +45,7 @@ export var products = [{
     price: '₩178,000',
     priceset: 178000,
 
-    img: '../../images/pic6.jpg',
+    img: '../../images/pic6-0.jpg',
     title: "90's 탱크탑",
     text: "The best beer comes from the monastery."
 }, {
@@ -53,14 +53,14 @@ export var products = [{
     price: '₩825,000',
     priceset: 825000,
 
-    img: '../../images/pic7.jpg',
+    img: '../../images/pic7-0.jpg',
     title: "플로럴 프린트 맥시 스커트",
     text: "The best beer comes from the monastery."
 }, {
     id: 8,
     price: '₩462,000',
     priceset: 462000,
-    img: '../../images/pic8.jpg',
+    img: '../../images/pic8-0.jpg',
     title: "캣아이 프레임 안경",
     text: "The best beer comes from the monastery."
 },
@@ -82,7 +82,7 @@ export var products = [{
     price: '₩297,000',
     priceset: 297000,
 
-    img: '../../images/pic11.jpg',
+    img: '../../images/pic11-0.jpg',
     title: "골지 슬림 핏 폴로 탑",
     text: "The best beer comes from the monastery."
 }, {
@@ -90,7 +90,7 @@ export var products = [{
     price: '₩3,098,000',
     priceset: 3098000,
 
-    img: '../../images/pic12.jpg',
+    img: '../../images/pic12-0.jpg',
     title: "디보스드 로고 버킷 백",
     text: "The best beer comes from the monastery."
 }, {
@@ -98,7 +98,7 @@ export var products = [{
     price: '₩457,000',
     priceset: 457000,
 
-    img: '../../images/pic13.jpg',
+    img: '../../images/pic13-0.jpg',
     title: "윙 칼라 볼륨 트렌치코트",
     text: "The best beer comes from the monastery."
 }
