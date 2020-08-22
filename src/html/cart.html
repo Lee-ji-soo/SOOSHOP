@@ -14,6 +14,25 @@
 </head>
 
 <body>
+    <!--모달창-->
+    <div class="modal-box">
+        <div class="modal-bg-box">
+            <div class="modal-input-box">
+                <h4 id="modal_title">로그인하세요</h4>
+                <form id="input-form" action="login.php">
+                    <div class="input">
+                        <input id="form-email" type="email" placeholder="이메일을 입력하세요">
+                        <input id="form-password" type="password" placeholder="비밀번호를 입력하세요">
+                    </div>
+                    <div id="form-handle">
+                        <button id='submit-btn' class="btn" type="submit">Submit</button>
+                        <button id="close-btn" class="btn" type="button">닫기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <header>
         <!--네비게이션-->
         <nav id="navigation">
@@ -45,14 +64,14 @@
             <div class="cart-bg">
                 <div class="shoppingbag__table">
                     <h4 id="cart-title">MY CART</h4>
-                    <div class="table">
+                    <div id="product-box" class="table">
                     </div>
                 </div>
                 <div class="sum__table">
                     <h4 id="sum-title">TOTAL</h4>
                     <div class='sum-box sum__product'>
                         <span class='sum-box__tt'>합계</span>
-                        <span id="sum"></span>
+                        <span id="sum_result"></span>
                     </div>
                     <div class='sum-box sum__ship'>
                         <span class='sum-box__tt'>배송비</span>
@@ -63,7 +82,7 @@
         </div>
     </main>
 
-    <script src="../js/cart.js"> </script>
+    <script type="module" src="../js/index.js"> </script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"

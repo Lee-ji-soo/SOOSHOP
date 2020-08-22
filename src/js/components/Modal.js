@@ -30,8 +30,10 @@ function Modal(EMAIL_RULE) {
                 }
             }
 
-            signBtn.forEach(btn => btn.addEventListener('click', openModal))
-            modalBg.addEventListener('click', closeModal)
+            if (signBtn, modalBg) {
+                signBtn.forEach(btn => btn.addEventListener('click', openModal))
+                modalBg.addEventListener('click', closeModal)
+            }
         }
 
         this.emailCheck = () => {
@@ -63,7 +65,9 @@ function Modal(EMAIL_RULE) {
                 }
             }
 
-            modalSubmit.addEventListener('submit', isPermitted)
+            if (modalSubmit) {
+                modalSubmit.addEventListener('submit', isPermitted)
+            }
         }
 
         this.handleOpen()
