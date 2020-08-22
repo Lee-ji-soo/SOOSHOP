@@ -1,27 +1,26 @@
 function Modal(EMAIL_RULE) {
+    const modal = document.querySelector('.modal-box')
+    const modalBg = document.querySelector('.modal-bg-box')
+    const signBtn = document.querySelectorAll('.nav_sign')
+    const closeBtn = document.getElementById('close-btn')
+    const modalTT = document.getElementById('modal_title')
 
     this.evtBinding = () => {
 
         this.handleOpen = () => {
-            const modal = document.querySelector('.modal-box')
-            const modalBg = document.querySelector('.modal-bg-box')
-            const signBtn = document.querySelectorAll('.nav_sign')
-            const closeBtn = document.getElementById('close-btn')
-
             let signInUpTxt = ''
 
             const openModal = (e) => {
-                console.log(e)
-                const modalTT = document.getElementById('modal_title')
-
                 if (e.target.id === 'signup-btn') {
                     signInUpTxt = "가입 하세요"
                 } else if (e.target.id === 'signin-btn') {
                     signInUpTxt = "로그인 하세요"
                 }
 
-                modalTT.innerHTML = signInUpTxt
-                modal.style.display = 'block';
+                if (modalTT, modal) {
+                    modalTT.innerHTML = signInUpTxt
+                    modal.style.display = 'block'
+                }
             }
 
             const closeModal = (e) => {

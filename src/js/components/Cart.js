@@ -67,18 +67,17 @@ function Cart() {
     this.renderPrice = () => {
         this.sum = () => {
             const eachPrice = this.products.map(sample => sample.priceset)
-            let quantity = document.querySelectorAll('.quantity-form-control')
+            const formQuantity = document.querySelectorAll('.quantity-form-control')
             let sum = 0
-            let eachSumArr = []
 
-            for (let i = 0; i < eachPrice.length; i++) {
-                let eachSum = eachPrice[i] * quantity[i].value
-                sum += eachSum;
-                eachSumArr.push(sum)
+            if (formQuantity.length > 0) {
+                for (let i = 0; i < eachPrice.length; i++) {
+                    let eachSum = eachPrice[i] * formQuantity[i].value
+                    sum += eachSum
+                }
             }
             this.converToKRW(sum, sumResult)
         }
-
         this.sum()
     }
 

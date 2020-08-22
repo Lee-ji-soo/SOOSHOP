@@ -1,4 +1,4 @@
-import { EMAIL_RULE } from './const.js'
+import { EMAIL_RULE } from './const/const.js'
 import { products } from '../assets/products.js';
 
 import Modal from './components/Modal.js'
