@@ -64,21 +64,18 @@ function Cart() {
         }
     }
 
-    this.renderPrice = () => {
-        this.sum = () => {
-            const eachPrice = this.products.map(sample => sample.priceset)
-            const formQuantity = document.querySelectorAll('.quantity-form-control')
-            let sum = 0
+    this.renderSum = () => {
+        const eachPrice = this.products.map(sample => sample.priceset)
+        const formQuantity = document.querySelectorAll('.quantity-form-control')
+        let sum = 0
 
-            if (formQuantity.length > 0) {
-                for (let i = 0; i < eachPrice.length; i++) {
-                    let eachSum = eachPrice[i] * formQuantity[i].value
-                    sum += eachSum
-                }
+        if (formQuantity.length > 0) {
+            for (let i = 0; i < eachPrice.length; i++) {
+                let eachSum = eachPrice[i] * formQuantity[i].value
+                sum += eachSum
             }
-            this.converToKRW(sum, sumResult)
         }
-        this.sum()
+        this.converToKRW(sum, sumResult)
     }
 
     this.evtBinding = () => {
@@ -100,7 +97,7 @@ function Cart() {
                 const confirmNo = document.querySelectorAll('.confirm-no')
                 showConfirm(e)
 
-                confirmGo.forEach(go => go.addEventListener('click', this.renderPrice))
+                confirmGo.forEach(go => go.addEventListener('click', this.renderSum))
                 confirmGo.forEach(go => go.addEventListener('click', hideConfirm))
                 confirmNo.forEach(go => go.addEventListener('click', hideConfirm))
 
@@ -138,6 +135,6 @@ function Cart() {
 
     this.render()
     this.evtBinding()
-    this.renderPrice()
+    this.renderSum()
 }
 export default Cart
