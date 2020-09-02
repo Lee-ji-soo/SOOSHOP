@@ -5,7 +5,7 @@
         "price": "₩1,380,000",
         "priceset": 1380000,
         "img": [
-            "../../images/pic4-0.jpg"
+            "../../images/product/pic4-0.jpg"
         ],
         "title": "Signor Dress",
         "text": "이것은 7번째 상품입니다."
@@ -16,7 +16,7 @@
         "price": "₩719,000",
         "priceset": 719000,
         "img": [
-            "../../images/pic5-0.jpg"
+            "../../images/product/pic5-0.jpg"
         ],
         "title": "Monseur",
         "text": "이것은 8번째 상품입니다."
@@ -27,7 +27,7 @@
         "price": "₩178,000",
         "priceset": 178000,
         "img": [
-            "../../images/pic6-0.jpg"
+            "../../images/product/pic6-0.jpg"
         ],
         "title": "Kamusta",
         "text": "이것은 9번째 상품입니다."

@@ -1,0 +1,25 @@
+#footer{
+    width:100%;
+    height:max-content;
+
+    background-color:#222;
+
+    color:#fff;
+
+}
+
+#footer .con-box{
+    padding:var(--basicLRPadding);
+    padding-top:4rem;
+    padding-bottom:4rem;
+}
+
+#footer .con-box .con{
+    font-family: 'Lato';
+    line-height:1.3rem;
+    font-weight:100;
+}
+
+#footer .con-box .license{
+    font-weight:400;
+}

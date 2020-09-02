@@ -8,15 +8,17 @@ function MainProduct({ products, setProductId }) {
         if (productUL) {
             let htmlStr = ''
             htmlStr += this.products
-                .map(product =>
-                    `<li id='${product.id}'>
+                .map((product, index) =>
+                    `<li class='product' id='${product.id}'>
                         <a href='./detail.html'>
-                            <img data-product='${product.id}'class='product_img'
-                            src='${product.img[0]}'>
+                            <img data-product='${index}' class='product_img' src='${product.img[0]}'>
+                            <div data-product='${index}' class='product-info'>
+                                <p class='txt product_title'>${product.title}</p>
+                                <p class='txt product_price'>${product.price}</p>
+                            </div>
                         </a>
-                        <p class='product_title'>${product.title}</p>
-                        <p class='product_price'>${product.price}</p>
-                     </li>`)
+                    </li>
+                   `)
                 .join('')
 
             productUL.innerHTML = htmlStr
@@ -26,9 +28,11 @@ function MainProduct({ products, setProductId }) {
     this.setState = (nextData) => {
         this.products = nextData
         this.render()
+        this.handleHoverProduct()
     }
 
     this.evtBingding = () => {
+
         this.handleSorting = () => {
             const sortBtnLow = document.getElementById('sort-btn__low');
             const sortBtnHigh = document.getElementById('sort-btn__high');
@@ -66,14 +70,14 @@ function MainProduct({ products, setProductId }) {
 
                 const callProductAjax = () => {
                     if (more == 0) {
-                        $.get("../assets/more.json").done(
+                        $.get("../../src/assets/more.json").done(
                             function (product) {
                                 addProducts(product)
                             }
                         );
                     }
                     if (more == 1) {
-                        $.get("../assets/more2.json").done(
+                        $.get("../../src/assets/more2.json").done(
                             function (product) {
                                 addProducts(product)
                                 moreBtn.classList.add('hidden'); //버튼없애기
@@ -96,12 +100,45 @@ function MainProduct({ products, setProductId }) {
             if (productUL) {
                 productUL.addEventListener('click', getProductId)
             }
+        }
+
+        this.handleHoverProduct = () => {
+            const product = document.querySelectorAll('.product')
+            const productInfo = document.querySelectorAll('.product-info')
+
+            console.log(product, productInfo)
+
+            const checkSame = (info, e) => {
+                if (info.dataset.product === e.target.dataset.product) {
+                    return true
+                }
+
+            }
+
+            const onMouseover = (e) => {
+                productInfo
+                    .forEach(info => {
+                        if (checkSame(info, e) && e.target.classList.contains('product_img')) {
+                            e.target.parentNode.children[1].classList.add('displayBlock')
+                        }
+                    }
+                    )
+            }
+
+            const onMouseleave = (e) => {
+                productInfo.forEach(info => info.classList.remove('displayBlock'))
+            }
+
+            product.forEach(pro => pro.addEventListener('mouseover', onMouseover))
+
+            product.forEach(pro => pro.addEventListener('mouseleave', onMouseleave))
 
         }
 
         this.handleSorting()
         this.handleMoreBtn()
         this.handleClickProduct()
+        this.handleHoverProduct()
     }
 
     this.render()

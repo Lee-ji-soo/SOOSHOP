@@ -1,8 +1,8 @@
 import { EMAIL_RULE } from './const/const.js'
-import { products } from '../assets/products.js';
+import { products } from './../assets/products.js';
 
 import Modal from './components/Modal.js'
-import Window from './components/Window.js'
+import MainPage from './components/MainPage.js'
 import MainProduct from './components/MainProduct.js'
 import DetailProduct from './components/DetailProduct.js'
 import Cart from './components/Cart.js'
@@ -16,7 +16,7 @@ function App() {
         this.detailProduct.setState(productId)
     }
 
-    this.window = new Window()
+    this.window = new MainPage()
 
     this.modal = new Modal(EMAIL_RULE)
 

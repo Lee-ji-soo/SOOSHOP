@@ -5,11 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOOSHOP</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/index.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css.9e29eda8.css">
 
-</head>
+<script src="/css.9e29eda8.js"></script></head>
 
 <body>
     <!--모달창-->
@@ -23,7 +22,7 @@
                         <input id="form-password" type="password" placeholder="비밀번호를 입력하세요">
                     </div>
                     <div id="form-handle">
-                        <button id='submit-btn' class="btn" type="submit">Submit</button>
+                        <button id="submit-btn" class="btn" type="submit">Submit</button>
                         <button id="close-btn" class="btn" type="button">닫기</button>
                     </div>
                 </form>
@@ -37,13 +36,13 @@
             <a class="nav-brand" href="#">SOOSHOP</a>
             <ul class="nav-ul">
                 <li class="nav-li">
-                    <a class="nav-btn" href="./index.html">Home</a>
+                    <a class="nav-btn" href="/index.html">Home</a>
                 </li>
                 <li class="nav-li">
-                    <a class="nav-btn" href="./cart.html">Cart</a>
+                    <a class="nav-btn" href="/cart.html">Cart</a>
                 </li>
                 <li class="nav-li">
-                    <a class="nav-btn" href="./about.html">About</a>
+                    <a class="nav-btn" href="/about.html">About</a>
                 </li>
                 <li class="nav-li nav_sign">
                     <a id="signin-btn" class="nav-btn" href="#">Log in</a>
@@ -59,10 +58,10 @@
         <!--탑 베너-->
         <section id="topbanner-box">
             <article>
-                <h1 class='visuallyhidden'>sooshop</h1>
-                <section id='top-img'>
+                <h1 class="visuallyhidden">sooshop</h1>
+                <section id="top-img">
                 </section>
-                <div class='topbanner-con'>
+                <div class="topbanner-con">
                     <p class="con">
                         This is a simple hero unit, a simple jumbotron-style component for calling
                         extra attention to featured content or information.
@@ -78,38 +77,29 @@
         <!--상품진열-->
 
         <section class="productlist-box">
-            <section class="sort-box">
+            <div>
                 <button id="sort-btn__low" class="btn btn-dark">낮은 가격순으로 정렬</button>
                 <button id="sort-btn__high" class="btn btn-dark">높은 가격순으로 정렬</button>
-            </section>
+            </div>
             <ul class="row" id="product-ul">
             </ul>
-
             <!--상품더보기 버튼 (AJAX)-->
-            <div id='more-btn-box'>
-                <button id="more-btn" class="btn btn-dark">상품 더보기</button>
-            </div>
+            <button id="more-btn" class="btn btn-dark">상품 더보기</button>
         </section>
     </main>
 
-    <footer id="footer">
-        <section class='con-box'>
-            <p class="con-txt con">
-                This is a simple hero unit, a simple jumbotron-style component for calling extra
-                attention to featured content or information.
-            </p>
-            <p class="con-txt con">
-                It uses utility classes for typography and spacing to space content out within the
-                larger container.
-            </p>
-            <br>
-            <p class="con-txt con license">
-                This Shop's image and information license all belong to ©SOOSHOP
-            </p>
-        </section>
+    <footer>
+        <p class="footer-txt">
+            This is a simple hero unit, a simple jumbotron-style component for calling extra
+            attention to featured content or information.
+        </p>
+        <p class="footer-txt">
+            It uses utility classes for typography and spacing to space content out within the
+            larger container.
+        </p>
     </footer>
 
-    <script type="module" src='../js/index.js'></script>
+    <script type="module" src="/js.fcffc47e.js"></script>
 </body>
 
 </html>
