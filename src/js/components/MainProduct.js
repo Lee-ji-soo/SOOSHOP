@@ -58,7 +58,7 @@ function MainProduct({ products, setProductId }) {
         }
 
         this.handleMoreBtn = () => {
-            const moreBtn = document.getElementById('more-btn')
+            const moreBtn = document.getElementById('more-btn-box')
 
             if (moreBtn) {
                 const addProducts = (calledProducts) => {
