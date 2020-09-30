@@ -3,7 +3,7 @@ export var products = [{
     id: 1,
     price: '₩305,000',
     priceset: 305000,
-    img: ['../../images/product/pic1-0.jpg', '../../images/pic1-1.jpg'],
+    img: ['../../images/product/pic1-0.jpg', '../../images/product/pic1-1.jpg'],
     title: '스쿱 넥 탱크 탑',
     text: "Do you like some random yellow stuff? Here's one for you."
 },

@@ -12,9 +12,12 @@
     --basicLRPadding:0 1rem;
     --basicLRMargin:0 2rem;
     --listPadding:0 .7rem;
-    
+    --txtPadding:.4rem 0;
+
     --buttonPadding:0.5rem;
     --buttonRadius:0.8rem;
+    --buttonLightBorder:2px solid #dfdfdf;
+    
     font-family: 'Lato';
     font-size:100%;
 }

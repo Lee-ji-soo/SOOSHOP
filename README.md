@@ -30,5 +30,5 @@ shoppingmall_website
 
 - [x] main
 - [x] modal
-- [ ] detail
+- [x] detail
 - [ ] Cart

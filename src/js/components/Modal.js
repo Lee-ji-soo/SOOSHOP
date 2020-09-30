@@ -2,8 +2,10 @@ function Modal(EMAIL_RULE) {
     const modal = document.querySelector('.modal-box')
     const modalBg = document.querySelector('.modal-bg-box')
     const signBtn = document.querySelectorAll('.nav_sign')
-    const closeBtn = document.getElementById('close-btn')
-    const modalTT = document.getElementById('modal_title')
+    const closeBtn = document.querySelector('#close-btn')
+    const modalTT = document.querySelector('#modal_title')
+    const emailInput = document.querySelector('#form-email');
+    const passwordInput = document.querySelector('#form-password');
 
     this.evtBinding = () => {
 
@@ -26,6 +28,8 @@ function Modal(EMAIL_RULE) {
             const closeModal = (e) => {
                 if (e.target === modalBg || e.target === closeBtn) {
                     modal.style.display = 'none';
+                    emailInput.value = '';
+                    passwordInput.value = '';
                 }
             }
 

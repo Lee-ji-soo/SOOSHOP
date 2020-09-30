@@ -1,28 +1,40 @@
+let selectedObj = [];
+
 function DetailProduct({ products }) {
     let product = products[0]
 
     this.render = () => {
-        const productBox = document.getElementById('detail-product-box')
-        let htmlStr = ''
+        const productImg = document.getElementById('detail_img-wrap');
+        const productInfo = document.getElementById('detail_info-wrap');
 
-        htmlStr +=
-            `
-        <img id="product_img" src=${product.img[0]}>
-        <div id="produc_img-btn">
-            <button class="img_btn prev">
-                <i class="fas fa-caret-left fa-3x"></i>
-            </button>
-            <button class="img_btn next">
-                <i class="fas fa-caret-right fa-3x"></i>
-            </button>
-        </div>
-        <h4 id="detail-product_title">${product.title}</h4>
-        <p id="detail-product_text">${product.text}</p>
-        <p id="detail-product_price">${product.price}</p>
-        `
+        let imgStr = '';
+        let detailStr = '';
 
-        if (productBox) {
-            productBox.innerHTML = htmlStr
+        imgStr = `
+        <section id='product_img-wrap'>
+            <img id='product_img' src=${product.img[0]}>
+            <div id="product_img-btn">
+                <button class="img_btn prev">
+                    <i class="fas fa-caret-left fa-3x"></i>
+                </button>
+                <button class="img_btn next">
+                    <i class="fas fa-caret-right fa-3x"></i>
+                </button>
+            </div>
+        </section>
+       `
+
+        detailStr = `
+        <section id='product_info-wrap'>
+            <h4 class='line' id="detail-product_title">${product.title}</h4>
+            <p class='line detail' id="detail-product_text">${product.text}</p>
+            <p class='line detail' id="detail-product_price">${product.price}</p>
+        </section>
+`
+
+        if (productImg && productInfo) {
+            productImg.insertAdjacentHTML('afterBegin', imgStr);
+            productInfo.insertAdjacentHTML('afterBegin', detailStr)
         }
     }
 
@@ -34,7 +46,7 @@ function DetailProduct({ products }) {
     this.evtBinding = () => {
 
         this.handleImgBtn = () => {
-            const productImgBtn = document.getElementById('produc_img-btn')
+            const productImgBtn = document.getElementById('product_img-btn')
             const productImg = document.getElementById('product_img')
 
             let cur = 0;
@@ -56,48 +68,45 @@ function DetailProduct({ products }) {
         this.handleShoppingBag = () => {
             const shoppingBag = document.getElementById('shoppingbag')
 
-            const handleSelected = () => {
+            const handleSelected = (e) => {
                 const name = document.getElementById("detail-product_title").innerHTML;
                 const quantity = document.getElementById("detail-form_quantity").value;
                 const price = document.getElementById("detail-product_price").innerHTML;
                 const color = document.getElementById("detail-form_color").value;
                 const size = document.getElementById("detail-form_size").value;
-                const quantityValue = quantity
 
                 const saveSelectedItem = (e) => {
-
                     e.preventDefault();
 
-                    let selectedObj = {
-                        name: 'name',
-                        quantity: 'quantity',
-                        price: 'price',
-                        color: 'color',
-                        size: 'size'
-                    }
+                    selectedObj.push({
+                        name,
+                        quantity,
+                        price,
+                        color,
+                        size
+                    })
 
-                    selectedObj.name = name
-                    selectedObj.quantity = quantity
-                    selectedObj.price = price
-                    selectedObj.color = color
-                    selectedObj.size = size
                     localStorage.setItem("selectedProduct", JSON.stringify(selectedObj))
                 }
 
-                const moveToCartPage = () => {
+                const moveToCartPage = (e) => {
+                    e.preventDefault();
 
-                    if (quantityValue < 1) {
+                    if (quantity < 1) {
                         window.alert('수량은 최소1개입니다')
                     } else {
                         const answer =
-                            window.confirm('장바구니에 추가되었습니다.장바구니로 이동하시겠습니까?')
+                            window.confirm('장바구니에 추가되었습니다.장바구니로 이동하시겠습니까?');
                         if (answer) {
                             window.location = './cart.html';
+                            saveSelectedItem(e);
                         } else {
                             return
                         }
                     }
                 }
+
+                moveToCartPage(e);
             }
 
             if (shoppingBag) {
@@ -106,19 +115,23 @@ function DetailProduct({ products }) {
         }
 
         this.handleTab = () => {
-            const tabBox = document.getElementById('detail-tab')
+            const tabBox = document.getElementById('tab-ul')
             const tabBtn = document.querySelectorAll('.tab_btn')
             const tabCon = document.querySelectorAll('.tab_content')
 
             const changeTab = (e) => {
-                const currentTarget = event.target.dataset.tab;
-                const eTargetCon = document.getElementById(`tab_${currentTarget}`)
+                const isTabBtn = e.target.classList.contains('tab_btn');
 
-                tabBtn.forEach(tab => tab.classList.remove('orange'))
-                e.target.classList.add('orange')
+                if (isTabBtn) {
+                    const currentTarget = e.target.dataset.tab;
+                    const eTargetCon = document.getElementById(`tab_${currentTarget}`)
 
-                tabCon.forEach(con => con.classList.remove('show'))
-                eTargetCon.classList.add('show');
+                    tabBtn.forEach(tab => tab.classList.remove('orange'))
+                    e.target.classList.add('orange')
+
+                    tabCon.forEach(con => con.classList.remove('show'))
+                    eTargetCon.classList.add('show');
+                }
             }
 
             if (tabBox) {

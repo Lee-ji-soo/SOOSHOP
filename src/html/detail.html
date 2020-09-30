@@ -15,67 +15,67 @@
     <div class="modal-box">
         <div class="modal-bg-box">
             <div class="modal-input-box">
-                <h4 id="modal_title">로그인하세요</h4>
-                <form id="input-form" action="login.php">
-                    <div class="input">
-                        <input id="form-email" type="email" placeholder="이메일을 입력하세요">
-                        <input id="form-password" type="password" placeholder="비밀번호를 입력하세요">
-                    </div>
-                    <div id="form-handle">
-                        <button id='submit-btn' class="btn" type="submit">Submit</button>
-                        <button id="close-btn" class="btn" type="button">닫기</button>
-                    </div>
-                </form>
+                <div class='modal-input_con'>
+                    <h4 id="modal_title">로그인하세요</h4>
+                    <form id="input-form" action="login.php">
+                        <div class="input">
+                            <input id="form-email" type="email" placeholder="이메일을 입력하세요">
+                            <input id="form-password" type="password" placeholder="비밀번호를 입력하세요">
+                        </div>
+                        <div class="submit">
+                            <button id='submit-btn' class="btn" type="submit">Submit</button>
+                            <button id="close-btn" class="btn" type="button">X</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <!--네비게이션-->
-    <header>
+    <header id="header">
+        <!--네비게이션-->
         <nav id="navigation">
             <a class="nav-brand" href="#">SOOSHOP</a>
-            <div>
-                <ul class="nav-ul">
-                    <li class="nav-li">
-                        <a class="nav-btn" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-li">
-                        <a class="nav-btn" href="./cart.html">Cart</a>
-                    </li>
-                    <li class="nav-li">
-                        <a class="nav-btn" href="./about.html">About</a>
-                    </li>
-                    <li class="nav-li nav_sign">
-                        <a id="signin-btn" class="nav-btn" href="#">Log in</a>
-                    </li>
-                    <li class="nav-li nav_sign">
-                        <a id="signup-btn" class="nav-btn" href="#">가입하기</a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="nav-ul">
+                <li class="nav-li">
+                    <a class="nav-btn" href="./index.html">Home</a>
+                </li>
+                <li class="nav-li">
+                    <a class="nav-btn" href="./cart.html">Cart</a>
+                </li>
+                <li class="nav-li nav_sign">
+                    <a id="signin-btn" class="nav-btn" href="#">Log in</a>
+                </li>
+                <li class="nav-li nav_sign">
+                    <a id="signup-btn" class="nav-btn" href="#">Sign up</a>
+                </li>
+            </ul>
         </nav>
     </header>
 
-    <!--상품이미지 정보 옵션-->
-    <main>
-        <div class="container">
-            <h4>Detail</h4>
-            <div>
-                <div id="detail-product-box">
-                </div>
-                <form>
-                    <div class="form-quantity">
-                        <input id="detail-form_quantity" type="text" value="1">
+    <main id='detail_main'>
+        <div class="detail_con">
+            <h1 class="visuallyhidden">Detail</h1>
+            <div id="detail_img-wrap">
+            </div>
+            <div id='detail_info-wrap'>
+                <form id='product_form-wrap'>
+                    <div class="line form-quantity">
+                        <label for='quantity'>수량 : </label>
+                        <input type="number" class='select' name='quantity' min='1' max="5" value='1' step='1'
+                            id="detail-form_quantity" />
                     </div>
-                    <div class="form-color">
-                        <select id="detail-form_color">
+                    <div class="line form-color">
+                        <label for='color'>색상 :</label>
+                        <select id="detail-form_color" class='select' name='color'>
                             <option>White</option>
                             <option>Red</option>
                             <option>Green</option>
                         </select>
                     </div>
-                    <div class="form-size">
-                        <select id="detail-form_size">
+                    <div class="line form-size">
+                        <label for='size'>사이즈 :</label>
+                        <select id="detail-form_size" class='select' name='size'>
                             <option>Large</option>
                             <option>Medium</option>
                             <option>Small</option>
@@ -85,51 +85,53 @@
                 </form>
             </div>
         </div>
-        </div>
 
         <!--탭버튼-->
         <div id="detail-tab">
-            <ul class="tab-ul">
-                <li class="tab-li"><a class="tab_btn" data-tab="product">Products</a></li>
-                <li class="tab-li"><a class="tab_btn orange" data-tab="Info">Info</a></li>
-                <li class="tab-li"><a class="tab_btn" data-tab="Shipping">Shipping</a></li>
-            </ul>
-            <div class="tab_content" id="tab_product">
-                <p>상품설명입니다. Product</p>
-            </div>
-            <div class="tab_content show" id="tab_Info">
-                <p>상품정보입니다. Information</p>
-            </div>
-            <div class="tab_content" id="tab_Shipping">
-                <p>배송정보입니다. Shipping</p>
-            </div>
+            <section id='tab-list'>
+                <ul id="tab-ul">
+                    <li class="tab-li tab_btn orange" data-tab="product">Products
+                    </li>
+                    <li class="tab-li tab_btn" data-tab="Info">Info
+                    </li>
+                    <li class="tab-li tab_btn" data-tab="Shipping">Shipping
+                    </li>
+                </ul>
+            </section>
+            <section id='tab-con'>
+                <div class="tab_content" id="tab_product">
+                    <p>상품설명입니다. Product</p>
+                </div>
+                <div class="tab_content show" id="tab_Info">
+                    <p>상품정보입니다. Information</p>
+                </div>
+                <div class="tab_content" id="tab_Shipping">
+                    <p>배송정보입니다. Shipping</p>
+                </div>
+            </section>
         </div>
-
     </main>
 
     <!--footer-->
-    <footer>
-        <p class="footer_txt">
-            This is a simple hero unit, a simple jumbotron-style component for calling extra
-            attention to featured content or information.
-        </p>
-        <p class="footer_txt">
-            It uses utility classes for typography and spacing to space content out within the
-            larger container.
-        </p>
+    <footer id="footer">
+        <section class='con-box'>
+            <p class="con-txt con">
+                This is a simple hero unit, a simple jumbotron-style component for calling extra
+                attention to featured content or information.
+            </p>
+            <p class="con-txt con">
+                It uses utility classes for typography and spacing to space content out within the
+                larger container.
+            </p>
+            <br>
+            <p class="con-txt con license">
+                This Shop's image and information license all belong to ©SOOSHOP
+            </p>
+        </section>
     </footer>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
     <script type="module" src="../js/index.js"> </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

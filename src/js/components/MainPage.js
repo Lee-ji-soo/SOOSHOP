@@ -1,8 +1,6 @@
 function MainPage() {
     const $topImg = document.querySelector('#top-img');
     const $shoppingCartImg = document.createElement('img');
-    $topImg.appendChild($shoppingCartImg);
-    $shoppingCartImg.classList.add('shoppingCart');
 
     this.turn = 'right';
     this.x = 0;
@@ -11,6 +9,11 @@ function MainPage() {
     this.stageWidth = document.body.clientWidth;
 
     this.render = () => {
+        if ($topImg && $shoppingCartImg) {
+            $topImg.appendChild($shoppingCartImg);
+            $shoppingCartImg.classList.add('shoppingCart');
+        }
+
         this.turn = 'right' ? 'right' : 'left'
         $shoppingCartImg.setAttribute('src',
             `../../../images/illustration/shoppingcart-${this.turn}.png`)
