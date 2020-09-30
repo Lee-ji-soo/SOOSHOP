@@ -28,7 +28,12 @@ shoppingmall_website
 
 # CSS
 
+- [x] header
+- [ ] header navigation-responsive
 - [x] main
 - [x] modal
+- [ ] modal-responsive
 - [x] detail
+- [x] detail-responsive
 - [ ] Cart
+- [ ] Cart-responsive
