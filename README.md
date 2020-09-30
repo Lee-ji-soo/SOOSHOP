@@ -1,6 +1,8 @@
 # SOOSHOP
 shoppingmall_website
-사용언어 : HTML, JS, CSS(SCSS)
+사용언어 : HTML, JS, CSS
+
+# JS
 
 ## login modal
 - [x] id, password 공백 여부 확인
@@ -23,3 +25,10 @@ shoppingmall_website
 - [x] 총합계 한국 표기법(₩)으로 출력
 - [x] 수량 변경 시 수량 변경 확인 문구창 띄우기
 - [x] 수량 변경 확인 시 전 상품 총합계 재출력
+
+# CSS
+
+- [x] main
+- [x] modal
+- [ ] detail
+- [ ] Cart

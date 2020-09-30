@@ -1,0 +1,93 @@
+.modal-box{
+    width:100%;
+    height:100%;
+    position:absolute;
+    display:none;
+}
+
+.modal-box .modal-bg-box {
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 5;
+    width:100%;
+    height:100%;
+}
+
+.modal-bg-box .modal-input-box {
+    position:absolute;
+    background:white;
+    width:40%;
+    height:45%;
+    padding:2%;
+    border-radius: var(--buttonRadius);
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%)
+}
+
+.modal-input-box .modal-input_con{
+    width:90%;
+    margin:4% auto;
+}
+
+.modal-input_con #modal_title{
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.modal-input_con #input-form .input{
+    padding:var(--basicTBPadding);
+    padding-bottom:0.1rem;
+}
+
+.modal-input_con #input-form .input input[type=email],
+.modal-input_con #input-form .input input[type=password]
+{
+    display:block;
+    margin:var(--basicTBPadding);
+    line-height:2rem;
+    width:100%;
+    padding:var(--buttonPadding);
+    box-sizing:border-box;
+    border:2px solid #dfdfdf;
+    font-size:1.1rem;
+    font-weight:bold;
+    text-align:center
+}
+
+
+.modal-input_con #input-form .submit{
+    padding:var(--basicTBPadding)
+}
+
+.modal-input_con #input-form .submit input,
+.modal-input_con #input-form .submit button{
+    background-color:white;
+    padding:var(--buttonPadding);
+    border-radius:var(--buttonRadius);
+}
+
+
+.modal-input_con #input-form .submit #submit-btn{
+    width:100%;
+    background-color:black;
+    color:white;
+}
+
+.modal-input_con #input-form .submit #submit-btn:hover{
+    background-color:tomato;
+    border:1px solid white;
+}
+
+.modal-input_con #input-form .submit #close-btn{
+    position:absolute;
+    top:3%;
+    right:2%;
+    font-size:1.5rem;
+    border:none;
+}
+
+.modal-input_con #input-form .submit #close-btn:hover{
+    color:tomato
+}
+

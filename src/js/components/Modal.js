@@ -73,7 +73,7 @@ function Modal(EMAIL_RULE) {
         this.emailCheck()
     }
 
-    this.evtBinding()
+    this.evtBinding();
 }
 
 export default Modal
