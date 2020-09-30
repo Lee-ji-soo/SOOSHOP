@@ -25,7 +25,7 @@ function MainPage() {
 
     this.animate = () => {
         this.x += this.vx
-        if (this.x > this.stageWidth - 35) {
+        if (this.x > this.stageWidth - 150) {
             this.vx *= -1
             this.turn = 'left'
         } else if (this.x < 0) {
@@ -39,7 +39,6 @@ function MainPage() {
         $shoppingCartImg.style.left = `${this.x}px`
         requestAnimationFrame(this.animate);
     };
-
 
     window.requestAnimationFrame(this.animate.bind(this));
     window.addEventListener('resize', this.resize);

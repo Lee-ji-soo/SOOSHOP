@@ -34,11 +34,17 @@
     padding:var(--basicTBPadding);
     padding-bottom:2rem;
 }
+
 #main .btn{
     background-color:#fff;
     padding:var(--buttonPadding);
     margin:0 0.4rem;
     border-radius:var(--buttonRadius);
+}
+
+#main .btn:hover{
+    background-color:black;
+    color:white;
 }
 
 #main .productlist-box #product-ul{
