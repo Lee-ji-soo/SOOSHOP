@@ -16,48 +16,50 @@
     <div class="modal-box">
         <div class="modal-bg-box">
             <div class="modal-input-box">
-                <h4 id="modal_title">로그인하세요</h4>
-                <form id="input-form" action="login.php">
-                    <div class="input">
-                        <input id="form-email" type="email" placeholder="이메일을 입력하세요">
-                        <input id="form-password" type="password" placeholder="비밀번호를 입력하세요">
-                    </div>
-                    <div id="form-handle">
-                        <button id='submit-btn' class="btn" type="submit">Submit</button>
-                        <button id="close-btn" class="btn" type="button">닫기</button>
-                    </div>
-                </form>
+                <div class='modal-input_con'>
+                    <h4 id="modal_title">로그인하세요</h4>
+                    <form id="input-form" action="login.php">
+                        <div class="input">
+                            <input id="form-email" type="email" placeholder="이메일을 입력하세요">
+                            <input id="form-password" type="password" placeholder="비밀번호를 입력하세요">
+                        </div>
+                        <div class="submit">
+                            <button id='submit-btn' class="btn" type="submit">Submit</button>
+                            <button id="close-btn" class="btn" type="button">X</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <header>
+    <header id="header">
         <!--네비게이션-->
         <nav id="navigation">
-            <a class="nav-brand" href="#">SOOSHOP</a>
-            <div>
-                <ul class="nav-ul">
-                    <li class="nav-li">
-                        <a class="nav-btn" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-li">
-                        <a class="nav-btn" href="./cart.html">Cart</a>
-                    </li>
-                    <li class="nav-li">
-                        <a class="nav-btn" href="./about.html">About</a>
-                    </li>
-                    <li class="nav-li nav_sign">
-                        <a id="signin-btn" class="nav-btn" href="#">Log in</a>
-                    </li>
-                    <li class="nav-li nav_sign">
-                        <a id="signup-btn" class="nav-btn" href="#">가입하기</a>
-                    </li>
-                </ul>
-            </div>
+            <a class="nav-brand" href="./index.html">SOOSHOP</a>
+            <section class='hamburger-open'>
+                <div class='btn_line'></div>
+                <div class='btn_line'></div>
+                <div class='btn_line'></div>
+            </section>
+            <ul class="nav-ul">
+                <li class="nav-li">
+                    <a class="nav-btn" href="./index.html">Home</a>
+                </li>
+                <li class="nav-li">
+                    <a class="nav-btn" href="./cart.html">Cart</a>
+                </li>
+                <li class="nav-li nav_sign">
+                    <a id="signin-btn" class="nav-btn" href="#">Log in</a>
+                </li>
+                <li class="nav-li nav_sign">
+                    <a id="signup-btn" class="nav-btn" href="#">Sign up</a>
+                </li>
+            </ul>
         </nav>
     </header>
 
-    <main>
+    <main id="main">
         <div class='cart-body'>
             <div class="cart-bg">
                 <div class="shoppingbag__table">
@@ -68,12 +70,12 @@
                 <div class="sum__table">
                     <h4 id="sum-title">TOTAL</h4>
                     <div class='sum-box sum__product'>
-                        <span class='sum-box__tt'>합계</span>
-                        <span id="sum_result"></span>
+                        <span class='txt sum-box__tt'>상품</span>
+                        <span class='txt sum-box__con' id="sum_result"></span>
                     </div>
                     <div class='sum-box sum__ship'>
-                        <span class='sum-box__tt'>배송비</span>
-                        <span id="ship">ℹ️</span>
+                        <span class='txt sum-box__tt'>배송</span>
+                        <span class='txt sum-box__con' id="ship">ℹ️</span>
                     </div>
                 </div>
             </div>

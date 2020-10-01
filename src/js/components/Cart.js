@@ -14,36 +14,43 @@ function Cart() {
                         <img src="${sample.img}">
                     </div>
                     <div class="cart-box__detail">
-                        <div data-id="${sample.id}" class="price">${sample.price}</div>
                         <div class='name'>${sample.name}</div>
-                        <div>
-                            <select class="form-control size-form-control" class="select-size">
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                            </select>
-                            <select data-id="${sample.id}" 
-                            class="form-control quantity-form-control select-quantity" size='1'
-                            onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; 
-                            this.blur();'>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>6</option>
-                            </select>
-                        </div>
-                        <button class="cart_delte-btn" data-id="${sample.id}">
-                            <div class="cart_delete-icon">
-                                <i class="fas fa-trash-alt"></i>
+                        <div data-id="${sample.id}" class="price">${sample.price}</div>
+                        <form class='cart-form'>
+                            <div class='form'>
+                                <label for='size'>사이즈:</label>
+                                <select name='size' class="form-control size-form-control select-size">
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                </select>
                             </div>
-                        </button>
+                            <div class='form'>
+                                <label for='quantity'>수량:</label>
+                                <select data-id="${sample.id}" 
+                                class="form-control quantity-form-control select-quantity"
+                                name='quantity'>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
-                    <div class="changeOrNot" class="changeOrNot">
+                    <button class="cart_delte-btn" data-id="${sample.id}">
+                        <div class="cart_delete-icon">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                    </button>
+                    <div id="changeOrNot" class="changeOrNot">
                         <p class="txt">수량을 변경하시겠습니까?</p>
-                        <button class="confirm-go">변경</button>
-                        <button class="confirm-no">취소</button>
+                        <div class='confirm_btn'>
+                            <button class="confirm-go">변경</button>
+                            <button class="confirm-no">취소</button>
+                        </div>
                     </div>
                 </div>`)
             .join('')
@@ -85,12 +92,12 @@ function Cart() {
             const confirmChange = (e) => {
 
                 const showConfirm = (e) => {
-                    const confirmAlert = e.target.closest('.cart-box').children[2]
+                    const confirmAlert = e.target.closest('.cart-box').children[3]
                     confirmAlert.classList.add('displayBlock')
                 }
 
                 const hideConfirm = (e) => {
-                    e.target.parentNode.classList.remove('displayBlock')
+                    e.target.parentNode.parentNode.classList.remove('displayBlock')
                 }
 
                 const confirmGo = document.querySelectorAll('.confirm-go')
