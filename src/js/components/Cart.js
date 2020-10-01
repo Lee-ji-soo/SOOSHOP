@@ -52,7 +52,7 @@ class Cart {
                     </div>
                     <button class="cart_delte-btn" data-id="${sample.id}">
                         <div>
-                            <i class="cart_delete-icon fas fa-trash-alt"></i>
+                            <i class="cart_delete-icon">X</i>
                         </div>
                     </button>
                     <div id="changeOrNot" class="changeOrNot">
