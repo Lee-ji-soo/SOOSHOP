@@ -1,13 +1,24 @@
 import { sampleStorage } from '../../assets/localStorage.js'
 
-function Cart() {
-    this.products = sampleStorage
-    const sumResult = document.getElementById('sum_result')
+class Cart {
+    constructor({ onChange }) {
+        this.products = sampleStorage
+        this.deleteBtn = null;
+        this.formQuantity = null;
+        this.sumResult = document.getElementById('sum_result')
+        this.productBox = document.getElementById('product-box');
+        this.cartBox = document.querySelectorAll('.cart-box');
+        this.onChange = onChange;
 
-    this.render = () => {
-        const productBox = document.getElementById('product-box')
-        let htmlStr = ''
-        htmlStr += this.products
+        this.data = this.products;
+        this.sum = 0;
+        this.render();
+        this.setState(this.data);
+    }
+
+    render() {
+        let htmlStr = '';
+        htmlStr += this.data
             .map(sample =>
                 `<div class="cart-box" data-id="${sample.id}">
                     <div class="cart-box__img">
@@ -27,8 +38,7 @@ function Cart() {
                             </div>
                             <div class='form'>
                                 <label for='quantity'>수량:</label>
-                                <select data-id="${sample.id}" 
-                                class="form-control quantity-form-control select-quantity"
+                                <select data-id="${sample.id}" data-price='${sample.priceset}'                                class="form-control quantity-form-control select-quantity"
                                 name='quantity'>
                                     <option>1</option>
                                     <option>2</option>
@@ -41,8 +51,8 @@ function Cart() {
                         </form>
                     </div>
                     <button class="cart_delte-btn" data-id="${sample.id}">
-                        <div class="cart_delete-icon">
-                            <i class="fas fa-trash-alt"></i>
+                        <div>
+                            <i class="cart_delete-icon fas fa-trash-alt"></i>
                         </div>
                     </button>
                     <div id="changeOrNot" class="changeOrNot">
@@ -55,12 +65,17 @@ function Cart() {
                 </div>`)
             .join('')
 
-        if (productBox) {
-            productBox.innerHTML = htmlStr
-        }
+        if (this.productBox) {
+            this.productBox.innerHTML = htmlStr
+        };
+        this.deleteBtn = document.querySelectorAll('.cart_delete-icon');
+        this.deleteBtn.forEach(btn => btn.addEventListener('click', this.handleDeletBtn.bind(this)));
+
+        this.quantityForm = document.querySelectorAll('.select-quantity');
+        this.quantityForm.forEach(form => form.addEventListener('change', this.handleQuantity.bind(this)));
     }
 
-    this.converToKRW = (nextSum, nextHTML) => {
+    converToKRW(nextSum, nextHTML) {
         let converted = new Intl.NumberFormat('ko-KR', {
             style: 'currency',
             currency: 'KRW'
@@ -71,77 +86,78 @@ function Cart() {
         }
     }
 
-    this.renderSum = () => {
-        const eachPrice = this.products.map(sample => sample.priceset)
-        const formQuantity = document.querySelectorAll('.quantity-form-control')
-        let sum = 0
-
-        if (formQuantity.length > 0) {
-            for (let i = 0; i < eachPrice.length; i++) {
-                let eachSum = eachPrice[i] * formQuantity[i].value
-                sum += eachSum
-            }
-        }
-        this.converToKRW(sum, sumResult)
+    renderSum(nextSum) {
+        this.sum = nextSum
+        this.converToKRW(this.sum, this.sumResult)
     }
 
-    this.evtBinding = () => {
-        this.handleQuantity = () => {
-            const quantityForm = document.querySelectorAll('.select-quantity')
+    setPrice() {
+        let newPrices = [];
 
-            const confirmChange = (e) => {
+        this.quantityForm.forEach(form => {
+            newPrices.push(form.dataset.price * form.value);
+        })
 
-                const showConfirm = (e) => {
-                    const confirmAlert = e.target.closest('.cart-box').children[3]
-                    confirmAlert.classList.add('displayBlock')
-                }
+        const setSum = () => {
+            const nextSum = newPrices.reduce((acc, cur) => {
+                return acc + cur
+            }, 0);
 
-                const hideConfirm = (e) => {
-                    e.target.parentNode.parentNode.classList.remove('displayBlock')
-                }
-
-                const confirmGo = document.querySelectorAll('.confirm-go')
-                const confirmNo = document.querySelectorAll('.confirm-no')
-                showConfirm(e)
-
-                confirmGo.forEach(go => go.addEventListener('click', this.renderSum))
-                confirmGo.forEach(go => go.addEventListener('click', hideConfirm))
-                confirmNo.forEach(go => go.addEventListener('click', hideConfirm))
-
-            }
-
-            if (quantityForm) {
-                quantityForm.forEach(form => form.addEventListener('change', confirmChange))
-            }
+            this.renderSum(nextSum);
         }
 
-        this.handleDeletBtn = () => {
-            const deleteBtn = document.querySelectorAll('.cart_delete-icon')
-
-            const deleteProduct = (e) => {
-                const cartBox = document.querySelectorAll('.cart-box')
-                const clicked = e.target.parentNode.parentNode.dataset.id
-
-                cartBox.forEach(box => {
-                    if (box.dataset.id === clicked) {
-                        box.remove()
-                    }
-                })
-                this.sum()
-            }
-
-            if (deleteBtn) {
-                deleteBtn.forEach(btn => btn.addEventListener('click', deleteProduct))
-            }
-        }
-
-        this.handleQuantity()
-        this.handleDeletBtn()
-
+        setSum();
     }
 
-    this.render()
-    this.evtBinding()
-    this.renderSum()
+    setState(nextData) {
+        this.data = nextData;
+
+        this.setPrice();
+        this.render();
+    }
+
+    handleQuantity(e) {
+        const value = e.target.value;
+        const target = e.target;
+
+        const handleGo = (e) => {
+            hideConfirm(e);
+            target.selectedIndex = value - 1;
+            this.setPrice();
+        }
+
+        const handleNo = (e) => {
+            hideConfirm(e);
+            target.selectedIndex = 0;
+        }
+
+        const showConfirm = (e) => {
+            const confirmAlert = e.target.closest('.cart-box').children[3]
+            confirmAlert.classList.add('displayBlock')
+        }
+
+        const hideConfirm = (e) => {
+            e.target.parentNode.parentNode.classList.remove('displayBlock');
+        }
+
+        const confirmGo = document.querySelectorAll('.confirm-go');
+        const confirmNo = document.querySelectorAll('.confirm-no');
+
+        confirmGo.forEach(go => go.addEventListener('click', handleGo));
+        confirmNo.forEach(go => go.addEventListener('click', handleNo));
+
+        showConfirm(e);
+    }
+
+    handleDeletBtn(e) {
+        const clicked = e.target.parentNode.parentNode.dataset.id * 1
+
+        const newList = this.data.filter(item => {
+            console.log(item.id, clicked)
+            return item.id !== clicked
+        });
+
+        this.setState(newList);
+    }
 }
 export default Cart

@@ -7,35 +7,41 @@ import DetailProduct from './components/DetailProduct.js';
 import Cart from './components/Cart.js';
 import Navigation from './components/Navigtaion.js';
 
-function App() {
-    let productId = ''
-    this.products = products
+class App {
+    constructor() {
+        let productId = ''
+        this.products = products
 
-    this.setProductId = (id) => {
-        productId = id
-        this.detailProduct.setState(productId)
+        this.setProductId = (id) => {
+            productId = id
+            this.detailProduct.setState(productId)
+        }
+
+        this.window = new MainPage()
+
+        this.modal = new Modal(EMAIL_RULE)
+
+        this.mainProduct = new MainProduct(
+            {
+                products: this.products,
+                setProductId: this.setProductId
+            }
+        )
+
+        this.detailProduct = new DetailProduct(
+            {
+                products: this.products
+            }
+        )
+
+        this.cartProduct = new Cart({});
+
+        this.navigation = new Navigation();
     }
 
-    this.window = new MainPage()
+    onChange() {
 
-    this.modal = new Modal(EMAIL_RULE)
-
-    this.mainProduct = new MainProduct(
-        {
-            products: this.products,
-            setProductId: this.setProductId
-        }
-    )
-
-    this.detailProduct = new DetailProduct(
-        {
-            products: this.products
-        }
-    )
-
-    this.cartProduct = new Cart();
-
-    this.navigation = new Navigation();
+    }
 }
 
 export default App
